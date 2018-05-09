@@ -38,6 +38,7 @@ private:
 public:
 	Heap ();
 	Heap(HeapType type);
+	Heap(const Heap& oriObj);
 	~Heap ();
 
 
@@ -70,6 +71,11 @@ inline Heap<T>::Heap(HeapType type)
 	this->capacity = 10;
 	this->nrOfitems = 0;
 	this->heapType = type;
+}
+
+template<typename T>
+inline Heap<T>::Heap(const Heap & oriObj)
+{
 }
 
 template<typename T>
