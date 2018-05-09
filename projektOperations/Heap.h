@@ -1,18 +1,34 @@
 #pragma once
-
+ //min or max
+enum HeapType { MIN, MAX };
 template <typename T>
-enum HeapType {MIN,MAX}; //min or max
+
 class Heap 
 {
 private:
 
-	
 	class Container
 	{
 	public:
 		T package;
 		int priority;
+		Container(T package, int priority)
+		{
+			package = package;
+			priority = priority;
+		};
+		Container()
+		{
+
+		};
+		~Container()
+		{
+
+		};
+
 	};
+
+
 	Container * queue;
 	int nrOfitems;
 
