@@ -28,21 +28,48 @@ private:
 
 	};
 
-
+	HeapType heapType; //standard MAX
 	Container * queue;
 	int nrOfitems;
+	int capacity;
+	void expand();
 
 
 public:
 	Heap ();
+	Heap(HeapType type);
 	~Heap ();
 
 
 };
 
 template<typename T>
+inline void Heap<T>::expand()
+{
+	this->capacity += capacity/2;
+	Container * temp = new Container[this->capacity];
+	for (int i = 0; i < this->nrOfitems; i++)
+	{
+		temp[i] = this->queue[i];
+	}
+	delete[]this->queue;
+	this->queue = temp;
+}
+
+template<typename T>
 inline Heap<T>::Heap()
 {
+	this->capacity = 10;
+	this->nrOfitems = 0;
+	this->heapType = MAX;
+}
+
+template<typename T>
+inline Heap<T>::Heap(HeapType type)
+{
+	this->capacity = 10;
+	this->nrOfitems = 0;
+	this->heapType = type;
 }
 
 template<typename T>
