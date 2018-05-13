@@ -117,12 +117,27 @@ inline void Heap<T>::insert(const T & element, const int priority)
 	//sort
 	int i = this->nrOfitems - 1;
 	int par = parent(i);
-	while (i != 0 && queue[par].priority > queue[i].priority)
-	{
-		this->swap(&queue[i], &queue[par]);
-		i = par;
-		par = parent(i);
+
+	//for min
+	if (this->heapType == MIN){
+		while (i != 0 && queue[par].priority > queue[i].priority)
+		{
+			this->swap(&queue[i], &queue[par]);
+			i = par;
+			par = parent(i);
+		}
 	}
+	//for max
+	else {
+		while (i != 0 && queue[par].priority < queue[i].priority)
+		{
+			this->swap(&queue[i], &queue[par]);
+			i = par;
+			par = parent(i);
+		}
+	}
+
+	
 }
 
 template<typename T>
@@ -149,34 +164,75 @@ inline T Heap<T>::extract()
 	int right = par + 2;
 	int toSwap = 0;
 	bool stop = false;
-	while (!stop)
-	{
-		if (left < this->nrOfitems) {
-			if (right < this->nrOfitems) {
-				if (queue[left].pririty > queue[right].priority) {
-					toSwap = right;
+
+	//MIN
+
+	if (this->heapType == MIN) {
+
+		while (!stop)
+		{
+			if (left < this->nrOfitems) {
+				if (right < this->nrOfitems) {
+					if (queue[left].priority > queue[right].priority) {
+						toSwap = right;
+					}
+					else {
+						toSwap = left;
+					}
 				}
 				else {
 					toSwap = left;
 				}
-			}
-			else {
-				toSwap = left;
-			}
-			if (queue[toSwap].prority<queue[par].priority){
-				swap(&queue[toSwap], &queue[par]);
-				par = toSwap;
-				lef = leftChilde(par);
-				right = rightChild(par);
+				if (queue[toSwap].priority < queue[par].priority) {
+					swap(&queue[toSwap], &queue[par]);
+					par = toSwap;
+					lef = leftChilde(par);
+					right = rightChild(par);
+				}
+				else {
+					stop = true;
+				}
 			}
 			else {
 				stop = true;
 			}
 		}
-		else{
-			stop = true;
+	}
+
+	//MAX
+	if (this->heapType == MIN) {
+		//ska testas
+		while (!stop)
+		{
+			if (left < this->nrOfitems) {
+				if (right < this->nrOfitems) {
+					if (queue[left].priority < queue[right].priority) {
+						toSwap = right;
+					}
+					else {
+						toSwap = left;
+					}
+				}
+				else {
+					toSwap = left;
+				}
+				if (queue[toSwap].prority > queue[par].priority) {
+					swap(&queue[toSwap], &queue[par]);
+					par = toSwap;
+					lef = leftChilde(par);
+					right = rightChild(par);
+				}
+				else {
+					stop = true;
+				}
+			}
+			else {
+				stop = true;
+			}
 		}
 	}
+
+
 	return temp;
 }
 
