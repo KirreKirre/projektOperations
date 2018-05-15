@@ -29,5 +29,8 @@
     <ClInclude Include="surgery.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="operatingTheater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
