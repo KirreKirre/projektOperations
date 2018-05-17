@@ -5,8 +5,7 @@ class operatingTheater
 {
 private:
 
-	int startTime[2]; //H //M
-	int closingTime[2]; // H //M
+	int timeAvalible; //in min
 
 	int scheduledTime;
 	//array ?
