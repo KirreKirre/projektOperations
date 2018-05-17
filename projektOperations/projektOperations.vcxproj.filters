@@ -21,6 +21,9 @@
     <ClCompile Include="surgery.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="operatingTheater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Heap.h">

@@ -11,8 +11,23 @@ private:
 	//array ?
 
 	surgery* surgeryList;
-	int capacity;
-	int nrOfSurgerys;
+	int capacity=20;
+	int nrOfSurgerys=0;
+
+	void expand()
+	{
+		if (this->nrOfSurgerys == this->capacity)
+		{
+			this->capacity += 10;
+			surgery * temp = new surgery[capacity];
+			for (int i = 0; i < this->nrOfSurgerys; i++)
+			{
+				temp[i] = this->surgeryList[i];
+			}
+			delete surgeryList;
+			surgeryList = temp;
+		}
+	};
 
 public:
 	operatingTheater();
@@ -20,8 +35,12 @@ public:
 	~operatingTheater();
 	operatingTheater(const operatingTheater &origObj);
 
-	void addSurgery();
-	string getStartAndClosingTime();
+	void addSurgery(surgery operationToAdd);
+	int getTimeAvalible()const;
+	int getSchedueldTime()const;
+
+
+
 
 	operatingTheater &operator=(const operatingTheater &other);
 

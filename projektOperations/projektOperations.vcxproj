@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="operatingTheater.cpp" />
     <ClCompile Include="surgery.cpp" />
   </ItemGroup>
   <ItemGroup>
