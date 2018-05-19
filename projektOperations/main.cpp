@@ -6,7 +6,7 @@
 //dum med mer rum
 //checkar var objektet får plats -->bäst med max heap? 
 
-void firstFit(const surgery operations[],const int nrOfSurgeries, HeapType type,operatingTheater theaters[], const int nrOfTheaters);
+void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
 //nextFit 461
 //does it fit were we put our last objket ->yes->put in same bin 
@@ -19,10 +19,9 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
+int main() {
 	operatingTheater OT;
 	OT.addSurgerysFromFile();
-
-int main() {
 
 	for (int i = 0; i < 1000; i++)
 	{
@@ -36,7 +35,7 @@ int main() {
 
 void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
-	Heap<surgery>sortedOperations(type) ;
+	Heap<surgery>sortedOperations(type);
 
 	for (int i = 0; i < nrOfSurgeries; i++) {
 		sortedOperations.insert(operations[i], operations[i].getTimeEstimate());
@@ -55,9 +54,9 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 				bool added = true;
 			}
 		}
-		
+
 	} while (added == true);
-	
+
 }
 
 
