@@ -1,22 +1,23 @@
 #include <iostream>
 #include "surgery.h"
 #include "Heap.h"
+#include "operatingTheater.h"
 //firstFit 
 //dum med mer rum
 //checkar var objektet får plats -->bäst med max heap? 
 
-void firstFit(surgery operations[],HeapType type);
+void firstFit(const surgery operations[],const int nrOfSurgeries, HeapType type,operatingTheater theaters[], const int nrOfTheaters);
 
 //nextFit 461
 //does it fit were we put our last objket ->yes->put in same bin 
 //=fill until full then take next
 
-void nextFit(surgery operations[],HeapType type);
+void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
 //bestFit
 //put in tightest spot right now. 
 
-void bestFit(surgery operations[],HeapType type);
+void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
 int main() {
 
@@ -30,17 +31,39 @@ int main() {
 	return 0;
 }
 
-void firstFit(surgery operations[], HeapType type)
+void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
+{
+	Heap<surgery>sortedOperations(type) ;
+
+	for (int i = 0; i < nrOfSurgeries; i++) {
+		sortedOperations.insert(operations[i], operations[i].getTimeEstimate());
+	}
+
+	bool added = false;
+	do
+	{
+		bool added = false;
+
+		for (int i = 0; i < nrOfSurgeries; i++) {
+
+			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getSchedueldTime()) {
+				theaters[i].addSurgery(sortedOperations.extract());
+				i = nrOfSurgeries;
+				bool added = true;
+			}
+		}
+		
+	} while (added == true);
+	
+}
+
+
+void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
 
 }
 
-void nextFit(surgery operations[], HeapType type)
-{
-
-}
-
-void bestFit(surgery operations[], HeapType type)
+void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
 
 }
