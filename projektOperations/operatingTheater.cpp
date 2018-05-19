@@ -54,7 +54,7 @@ int operatingTheater::getTimeAvalible()const
 
 int operatingTheater::getSchedueldTime() const
 {
-	return this->scheduledTime;
+	return this->timeAvalible - scheduledTime;
 }
 
 operatingTheater & operatingTheater::operator=(const operatingTheater & other)

@@ -64,6 +64,14 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 		sortedOperations.insert(operations[i], operations[i].getTimeEstimate());
 	}
 	//
+	int atIndex = 0;
+	while (atIndex<nrOfTheaters)
+	{
+		if (sortedOperations.peek().getTimeEstimate() >=theaters[atIndex].getSchedueldTime()) {
+
+		}
+
+	}
 
 }
 
