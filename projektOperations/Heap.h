@@ -14,8 +14,8 @@ private:
 		int priority;
 		Container(T package, int priority)
 		{
-			package = package;
-			priority = priority;
+			this->package = package;
+			this->priority = priority;
 		};
 		Container()
 		{
@@ -239,7 +239,7 @@ inline T Heap<T>::extract()
 template<typename T>
 inline void Heap<T>::swap(Container * firstObjekt, Container * other)
 {
-	T temp = *firstObjekt;
+	Container temp = *firstObjekt;
 	*firstObjekt = *other;
 	*other = temp;
 }
