@@ -19,7 +19,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
-surgery* readFromFile();
+surgery* readFromFile(int &nrOfoperations);
 
 int main() {
 
@@ -72,7 +72,7 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 }
 
-surgery * readFromFile()
+surgery * readFromFile(int &nrOfoperations)
 {
 	ifstream surgeryFile("Operationer_1a.txt"); /*Statiskt namn*/
 	string line;
@@ -86,6 +86,7 @@ surgery * readFromFile()
 		int i = 0;
 		while (std::getline(surgeryFile, line))
 		{
+			nrOfoperations++;
 			idString = line.substr(0, line.find(','));
 			speciality = line.substr(line.find(',') + 1, (line.find_last_of(',') - line.find_first_of(',') - 1));
 			timeString = line.substr(line.find_last_of(',') + 1, (line.length() - line.find_last_of(',')));
@@ -93,6 +94,7 @@ surgery * readFromFile()
 			int id = std::stoi(idString, nullptr);
 			int time = std::stoi(timeString, nullptr);
 			surgeryList[i] = surgery(id, speciality, time);
+			
 		}
 	}
 	return surgeryList;
