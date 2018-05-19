@@ -14,8 +14,8 @@ private:
 		int priority;
 		Container(T package, int priority)
 		{
-			package = package;
-			priority = priority;
+			this->package = package;
+			this->priority = priority;
 		};
 		Container()
 		{
@@ -49,7 +49,7 @@ public:
 
 	int leftChild(int parentInd) { return (((parentInd + 1) * 2) - 1); }
 	int rightChild(int parentInd) { return((parentInd + 1) * 2); }
-	int parent(int childInd) { return(((parentInd+ 1) / 2) - 1); }
+	int parent(int childInd) { return(((childInd+ 1) / 2) - 1); }
 	void swap(Container *firsobjekt, Container *other);
 
 
@@ -146,15 +146,15 @@ inline T Heap<T>::peek()
 	T temp;
 	if (this->nrOfitems > 0)
 	{
-		temp = queue[0].Container;
+		temp = this->queue[0].package;
 	}
-	return Container;
+	return temp;
 }
 
 template<typename T>
 inline T Heap<T>::extract()
 {
-	T temp = this->queue[0].item;
+	T temp = this->queue[0].package;
 
 	this->nrOfitems--;
 
@@ -186,7 +186,7 @@ inline T Heap<T>::extract()
 				if (queue[toSwap].priority < queue[par].priority) {
 					swap(&queue[toSwap], &queue[par]);
 					par = toSwap;
-					lef = leftChilde(par);
+					left = leftChild(par);
 					right = rightChild(par);
 				}
 				else {
@@ -216,10 +216,10 @@ inline T Heap<T>::extract()
 				else {
 					toSwap = left;
 				}
-				if (queue[toSwap].prority > queue[par].priority) {
+				if (queue[toSwap].priority > queue[par].priority) {
 					swap(&queue[toSwap], &queue[par]);
 					par = toSwap;
-					lef = leftChilde(par);
+					left = leftChild(par);
 					right = rightChild(par);
 				}
 				else {
@@ -239,10 +239,9 @@ inline T Heap<T>::extract()
 template<typename T>
 inline void Heap<T>::swap(Container * firstObjekt, Container * other)
 {
-	T temp = *firstObjekt;
+	Container temp = *firstObjekt;
 	*firstObjekt = *other;
 	*other = temp;
-
 }
 
 template<typename T>
