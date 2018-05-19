@@ -49,7 +49,7 @@ void operatingTheater::addSurgery(surgery operationToAdd)
 
 surgery* operatingTheater::addSurgerysFromFile()
 {
-	ifstream surgeryFile("Operationer_1a.txt");
+	ifstream surgeryFile("Operationer_1a.txt"); /*Statiskt*/
 	string line;
 	string idString;
 	string speciality;
