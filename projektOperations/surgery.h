@@ -28,7 +28,7 @@ public:
 
 	//operators
 	surgery &operator=(const surgery &other);
-	bool &operator==(const surgery &other);
+	bool &operator==(const surgery &other) const;
 
 
 
