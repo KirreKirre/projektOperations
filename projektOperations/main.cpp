@@ -19,9 +19,10 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
+surgery* readFromFile();
+
 int main() {
-	operatingTheater OT;
-	OT.addSurgerysFromFile();
+
 
 	/*the Bin packing problem, se kap 10.1.3*/
 
@@ -71,27 +72,28 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 }
 
-//{
-//	ifstream surgeryFile("Operationer_1a.txt"); /*Statiskt*/
-//string line;
-//string idString;
-//string speciality;
-//string timeString;
-//surgery* surgeryList = new surgery[30]; //dynamic
-//
-//if (surgeryFile.is_open())
-//{
-//	int i = 0;
-//	while (std::getline(surgeryFile, line))
-//	{
-//		idString = line.substr(0, line.find(','));
-//		speciality = line.substr(line.find(',') + 1, (line.find_last_of(',') - line.find_first_of(',') - 1));
-//		timeString = line.substr(line.find_last_of(',') + 1, (line.length() - line.find_last_of(',')));
-//
-//		int id = std::stoi(idString, nullptr);
-//		int time = std::stoi(timeString, nullptr);
-//		surgeryList[i] = surgery(id, speciality, time);
-//	}
-//}
-//return surgeryList;
-//}
+surgery * readFromFile()
+{
+	ifstream surgeryFile("Operationer_1a.txt"); /*Statiskt namn*/
+	string line;
+	string idString;
+	string speciality;
+	string timeString;
+	surgery* surgeryList = new surgery[30]; //dynamic
+
+	if (surgeryFile.is_open())
+	{
+		int i = 0;
+		while (std::getline(surgeryFile, line))
+		{
+			idString = line.substr(0, line.find(','));
+			speciality = line.substr(line.find(',') + 1, (line.find_last_of(',') - line.find_first_of(',') - 1));
+			timeString = line.substr(line.find_last_of(',') + 1, (line.length() - line.find_last_of(',')));
+
+			int id = std::stoi(idString, nullptr);
+			int time = std::stoi(timeString, nullptr);
+			surgeryList[i] = surgery(id, speciality, time);
+		}
+	}
+	return surgeryList;
+}

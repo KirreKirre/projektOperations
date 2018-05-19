@@ -19,7 +19,7 @@ public:
 	void setId(int iD);
 	void setSubSpeciality(string subSpeciality);
 	void setTimeEstimate(int timeEstimate);
-	void setSurgery(int iD,string subSpeciality,int timeEstimate);
+	void setSurgery(int iD, string subSpeciality, int timeEstimate);
 
 	//GET
 	int getId() const;

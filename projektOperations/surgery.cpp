@@ -85,11 +85,11 @@ bool & surgery::operator==(const surgery & other)
 {
 	bool equal = true;
 	if (this->getId() != other.getId() ||
-		this->getSubSpeciality()!=other.getSubSpeciality() ||
-		this->getTimeEstimate()!=other.getTimeEstimate()){
+		this->getSubSpeciality() != other.getSubSpeciality() ||
+		this->getTimeEstimate() != other.getTimeEstimate()) {
 		equal = false;
 	}
-		
+
 	return equal;
 
 }

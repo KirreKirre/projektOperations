@@ -1,9 +1,9 @@
 #pragma once
- //min or max
+//min or max
 enum HeapType { MIN, MAX };
 template <typename T>
 
-class Heap 
+class Heap
 {
 private:
 
@@ -36,10 +36,10 @@ private:
 
 
 public:
-	Heap ();
+	Heap();
 	Heap(HeapType type);
 	Heap(const Heap& oriObj);
-	~Heap ();
+	~Heap();
 
 	void insert(const T & element, const int priority);
 	//later modifie to handle other data types as priority
@@ -49,7 +49,7 @@ public:
 
 	int leftChild(int parentInd) { return (((parentInd + 1) * 2) - 1); }
 	int rightChild(int parentInd) { return((parentInd + 1) * 2); }
-	int parent(int childInd) { return(((childInd+ 1) / 2) - 1); }
+	int parent(int childInd) { return(((childInd + 1) / 2) - 1); }
 	void swap(Container *firsobjekt, Container *other);
 
 
@@ -60,7 +60,7 @@ public:
 template<typename T>
 inline void Heap<T>::expand()
 {
-	this->capacity += (10 + capacity/2);
+	this->capacity += (10 + capacity / 2);
 	Container * temp = new Container[this->capacity];
 	for (int i = 0; i < this->nrOfitems; i++)
 	{
@@ -94,7 +94,7 @@ inline Heap<T>::Heap(const Heap & oriObj)
 	this->capacity = oriObj.capacity;
 	this->nrOfitems = oriObj.nrOfitems;
 	this->queue = new Container[this->capacity];
-	for (int i = 0; i < this->nrOfitems; i++){
+	for (int i = 0; i < this->nrOfitems; i++) {
 		this->queue[i] = oriObj.queue[i];
 	}
 }
@@ -119,7 +119,7 @@ inline void Heap<T>::insert(const T & element, const int priority)
 	int par = parent(i);
 
 	//for MIN
-	if (this->heapType == MIN){
+	if (this->heapType == MIN) {
 		while (i != 0 && queue[par].priority > queue[i].priority)
 		{
 			this->swap(&queue[i], &queue[par]);
@@ -137,7 +137,7 @@ inline void Heap<T>::insert(const T & element, const int priority)
 		}
 	}
 
-	
+
 }
 
 template<typename T>

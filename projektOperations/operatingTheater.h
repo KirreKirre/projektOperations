@@ -2,7 +2,7 @@
 #include <fstream>
 
 #include "surgery.h"
-class operatingTheater 
+class operatingTheater
 {
 private:
 
@@ -12,8 +12,8 @@ private:
 	//array ?
 
 	surgery* surgeryList;
-	int capacity=20;
-	int nrOfSurgerys=0;
+	int capacity = 20;
+	int nrOfSurgerys = 0;
 
 	void expand()
 	{
