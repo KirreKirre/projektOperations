@@ -25,7 +25,7 @@ int main() {
 		std::cout << "Mohahahahaha \n" << std::endl;
 		system("CLS");
 	}
-	/*Dab on them haters*/
+	/*the Bin packing problem, se kap 10.1.3*/
 
 	return 0;
 }
