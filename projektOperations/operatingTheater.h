@@ -37,7 +37,6 @@ public:
 	operatingTheater(const operatingTheater &origObj);
 
 	void addSurgery(surgery operationToAdd);
-	surgery* addSurgerysFromFile();
 	int getTimeAvalible()const;
 	int getSchedueldTime()const;
 

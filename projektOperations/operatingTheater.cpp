@@ -47,32 +47,6 @@ void operatingTheater::addSurgery(surgery operationToAdd)
 	scheduledTime += operationToAdd.getTimeEstimate();
 }
 
-surgery* operatingTheater::addSurgerysFromFile()
-{
-	ifstream surgeryFile("Operationer_1a.txt"); /*Statiskt*/
-	string line;
-	string idString;
-	string speciality;
-	string timeString;
-	surgery* surgeryList = new surgery[30]; //dynamic
-
-	if (surgeryFile.is_open()) 
-	{
-		int i = 0;
-		while (std::getline(surgeryFile, line))
-		{
-			idString = line.substr(0, line.find(','));
-			speciality = line.substr(line.find(',') + 1, (line.find_last_of(',') - line.find_first_of(',') - 1));
-			timeString = line.substr(line.find_last_of(',') + 1, (line.length() - line.find_last_of(',')));
-
-			int id = std::stoi(idString, nullptr);
-			int time = std::stoi(timeString, nullptr);
-			surgeryList[i] = surgery(id, speciality, time);
-		}
-	}
-	return surgeryList;
-}
-
 int operatingTheater::getTimeAvalible()const
 {
 	return this->timeAvalible;
