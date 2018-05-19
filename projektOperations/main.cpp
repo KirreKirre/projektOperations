@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include "surgery.h"
+#include "operatingTheater.h"
 //firstFit 
 //dum med mer rum
 //checkar var objektet får plats -->bäst med max heap? 
@@ -13,6 +14,8 @@
 
 int main() {
 
+	operatingTheater OT;
+	OT.addSurgerysFromFile();
 
 
 	for (int i = 0; i < 1000; i++)

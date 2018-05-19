@@ -118,7 +118,7 @@ inline void Heap<T>::insert(const T & element, const int priority)
 	int i = this->nrOfitems - 1;
 	int par = parent(i);
 
-	//for min
+	//for MIN
 	if (this->heapType == MIN){
 		while (i != 0 && queue[par].priority > queue[i].priority)
 		{
@@ -127,7 +127,7 @@ inline void Heap<T>::insert(const T & element, const int priority)
 			par = parent(i);
 		}
 	}
-	//for max
+	//for MAX
 	else {
 		while (i != 0 && queue[par].priority < queue[i].priority)
 		{

@@ -124,6 +124,9 @@
     <ClInclude Include="operatingTheater.h" />
     <ClInclude Include="surgery.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Operationer_1a.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
