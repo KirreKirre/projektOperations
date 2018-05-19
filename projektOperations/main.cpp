@@ -19,6 +19,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
+
 int main() {
 
 	for (int i = 0; i < 1000; i++)
