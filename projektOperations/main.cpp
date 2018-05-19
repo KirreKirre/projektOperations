@@ -61,6 +61,12 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 
 void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
+	Heap<surgery>sortedOperations(type);
+
+	for (int i = 0; i < nrOfSurgeries; i++) {
+		sortedOperations.insert(operations[i], operations[i].getTimeEstimate());
+	}
+	//
 
 }
 
