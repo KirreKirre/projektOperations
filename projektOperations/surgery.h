@@ -5,7 +5,7 @@ using namespace std;
 
 class surgery {
 private:
-	int iD;
+	int iD; //Känns onödigt? Är väl samma som plats i arrayen?
 	string subSpeciality;
 	int timeEstimate;
 
