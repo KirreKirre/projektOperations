@@ -20,8 +20,6 @@ void bestFit(surgery operations[],HeapType type);
 
 int main() {
 
-
-
 	for (int i = 0; i < 1000; i++)
 	{
 		std::cout << "Mohahahahaha \n" << std::endl;
@@ -34,12 +32,15 @@ int main() {
 
 void firstFit(surgery operations[], HeapType type)
 {
+
 }
 
 void nextFit(surgery operations[], HeapType type)
 {
+
 }
 
 void bestFit(surgery operations[], HeapType type)
 {
+
 }
