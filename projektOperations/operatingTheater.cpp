@@ -25,8 +25,8 @@ operatingTheater::operatingTheater(const operatingTheater & origObj)
 {
 	if (this != &origObj)
 	{
-		this->timeAvalible = origObj.getTimeAvalible();
-		this->scheduledTime = origObj.getSchedueldTime();
+		this->timeAvalible = origObj.timeAvalible;
+		this->scheduledTime = origObj.scheduledTime;
 		this->surgeryList = new surgery[origObj.capacity];
 
 		for (int i = 0; i < origObj.nrOfSurgerys; i++)
@@ -52,9 +52,14 @@ int operatingTheater::getTimeAvalible()const
 	return this->timeAvalible;
 }
 
-int operatingTheater::getSchedueldTime() const
+int operatingTheater::getNonSchedueldTime() const
 {
 	return this->timeAvalible - scheduledTime;
+}
+
+int operatingTheater::getNumberOfSurgeries() const
+{
+	return this->capacity;
 }
 
 operatingTheater & operatingTheater::operator=(const operatingTheater & other)

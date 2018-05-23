@@ -38,9 +38,8 @@ public:
 
 	void addSurgery(surgery operationToAdd);
 	int getTimeAvalible()const;
-	int getSchedueldTime()const;
-
-
+	int getNonSchedueldTime()const;
+	int getNumberOfSurgeries()const;
 
 
 	operatingTheater &operator=(const operatingTheater &other);

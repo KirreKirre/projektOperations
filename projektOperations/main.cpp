@@ -2,6 +2,7 @@
 #include "surgery.h"
 #include "Heap.h"
 #include "operatingTheater.h"
+#include <string>
 //firstFit 
 //dum med mer rum
 //checkar var objektet får plats -->bäst med max heap? 
@@ -20,7 +21,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
 
-void displayScheduel(const operatingTheater theaters[],const int nrOfTheaters);
+void displaySchedule(const operatingTheater theaters[],const int nrOfTheaters,HeapType type,const int nrOfSurgeries);
 
 surgery* readFromFile(int &nrOfoperations);
 
@@ -47,7 +48,7 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 
 		for (int i = 0; i < nrOfSurgeries/*nrOfTheaters*/; i++) {
 			//Adds the first one in line to the room most to the "left", if it fits
-			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getSchedueldTime()) {
+			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getNonSchedueldTime()) {
 				theaters[i].addSurgery(sortedOperations.extract());
 				i = nrOfSurgeries;
 				bool added = true;
@@ -69,7 +70,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 	int atIndex = 0;
 	while (atIndex < nrOfTheaters)
 	{
-		if (sortedOperations.peek().getTimeEstimate() <= theaters[atIndex].getSchedueldTime())
+		if (sortedOperations.peek().getTimeEstimate() <= theaters[atIndex].getNonSchedueldTime())
 		{
 			theaters[atIndex].addSurgery(sortedOperations.extract());
 		}
@@ -96,7 +97,7 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 		int indexForDelta = -1;
 		for (int i = 0; i < nrOfTheaters; i++)
 		{
-			int roomDelta = theaters[i].getSchedueldTime() - sortedOperations.peek().getTimeEstimate();
+			int roomDelta = theaters[i].getNonSchedueldTime() - sortedOperations.peek().getTimeEstimate();
 			if (roomDelta >= 0) /*Makes sure delta is positive and therefore fits*/
 			{
 				if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
@@ -121,6 +122,23 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 		}
 
 	} while (added);
+}
+
+void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries)
+{
+	/////RELEVANT INFO
+
+	int unplaned = nrOfSurgeries;
+	for (int i = 0; i < nrOfTheaters;i++) {
+		unplaned -= theaters[i].getNumberOfSurgeries();
+	}
+	cout << "************************************************************" << endl;
+	//raw info
+	cout << "SCHEDULE \n Theaters : " + to_string(nrOfTheaters)
+		+ "\n number Of surgeries : " + to_string(nrOfSurgeries)
+		+ "\n number Of unschedueld surgeries : " + to_string(unplaned) << endl;
+
+
 }
 
 surgery * readFromFile(int &nrOfoperations)
