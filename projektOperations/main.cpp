@@ -42,7 +42,7 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 	{
 		bool added = false;
 
-		for (int i = 0; i < nrOfSurgeries/*nrOfTheaters*/; i++) {
+		for (int i = 0; i < nrOfTheaters; i++) {
 			//Adds the first one in line to the room most to the "left", if it fits
 			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getSchedueldTime()) {
 				theaters[i].addSurgery(sortedOperations.extract());
@@ -142,7 +142,6 @@ surgery * readFromFile(int &nrOfoperations)
 			int id = std::stoi(idString, nullptr);
 			int time = std::stoi(timeString, nullptr);
 			surgeryList[i] = surgery(id, speciality, time);
-
 		}
 	}
 	return surgeryList;
