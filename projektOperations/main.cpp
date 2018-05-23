@@ -64,9 +64,9 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 	}
 	//
 	int atIndex = 0;
-	while (atIndex<nrOfTheaters)
+	while (atIndex < nrOfTheaters)
 	{
-		if (sortedOperations.peek().getTimeEstimate() >=theaters[atIndex].getSchedueldTime()) {
+		if (sortedOperations.peek().getTimeEstimate() >= theaters[atIndex].getSchedueldTime()) {
 
 		}
 
@@ -101,7 +101,7 @@ surgery * readFromFile(int &nrOfoperations)
 			int id = std::stoi(idString, nullptr);
 			int time = std::stoi(timeString, nullptr);
 			surgeryList[i] = surgery(id, speciality, time);
-			
+
 		}
 	}
 	return surgeryList;
