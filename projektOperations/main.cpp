@@ -30,7 +30,7 @@ int main() {
 }
 
 void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
-{
+{/*Lägger bara till en theater?*/
 	Heap<surgery>sortedOperations(type);
 
 	for (int i = 0; i < nrOfSurgeries; i++) {
@@ -42,8 +42,8 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 	{
 		bool added = false;
 
-		for (int i = 0; i < nrOfSurgeries; i++) {
-
+		for (int i = 0; i < nrOfSurgeries; i++) { /*kan vara fel här! i räknar surgeries men theaters[i]!*/ /*Misstänker byte till nrOfTheaters!!!*/
+			//Adds the first one in line to the room if it fits
 			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getSchedueldTime()) {
 				theaters[i].addSurgery(sortedOperations.extract());
 				i = nrOfSurgeries;
@@ -54,7 +54,6 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 	} while (added == true);
 
 }
-
 
 void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
