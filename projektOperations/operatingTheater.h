@@ -36,6 +36,8 @@ public:
 	~operatingTheater();
 	operatingTheater(const operatingTheater &origObj);
 
+	void setTimeAvalible(int Time);
+
 	void addSurgery(surgery operationToAdd);
 	int getTimeAvalible()const;
 	int getSchedueldTime() const;

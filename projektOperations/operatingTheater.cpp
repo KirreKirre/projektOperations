@@ -10,8 +10,8 @@ operatingTheater::operatingTheater()
 
 operatingTheater::operatingTheater(int startTime, int closingTime)
 {
-	int totalTimec = closingTime - startTime;
-	timeAvalible = startTime;
+	int totalTime = closingTime - startTime;
+	timeAvalible = totalTime;
 	scheduledTime = 0;
 	surgeryList = new surgery[capacity];
 }
@@ -35,6 +35,11 @@ operatingTheater::operatingTheater(const operatingTheater & origObj)
 		}
 		this->nrOfSurgerys = origObj.nrOfSurgerys;
 	}
+}
+
+void operatingTheater::setTimeAvalible(int Time)
+{
+	this->timeAvalible = Time;
 }
 
 

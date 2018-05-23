@@ -30,12 +30,19 @@ int main() {
 	surgery* aList;
 	int nrOfOperations = 0;
 	aList = readFromFile(nrOfOperations);
+	operatingTheater room[3];
+	room[0].setTimeAvalible(1440);
+	room[1].setTimeAvalible(1220);
+	room[2].setTimeAvalible(1000);
 
 	for (int i = 0; i < nrOfOperations; i++) {
 		cout << "ID :" + to_string(aList[i].getId()) 
 			+ " Time:" + to_string(aList[i].getTimeEstimate()) 
 			+ " Speciality:" + aList[i].getSubSpeciality()<<endl;
 	}
+
+	nextFit(aList, nrOfOperations, MIN, room, 3);
+
 	/*the Bin packing problem, se kap 10.1.3*/
 
 	getchar();
@@ -204,16 +211,12 @@ surgery *readFromFile(int &nrOfoperations)
 			surgery temp(id, speciality, time);
 			surgeryList[i] = temp;
 
-			cout << "ID :" + to_string(surgeryList[i].getId())
+			/*cout << "ID :" + to_string(surgeryList[i].getId())
 				+ " Time:" + to_string(surgeryList[i].getTimeEstimate())
-				+ " Speciality:" + surgeryList[i].getSubSpeciality() << endl;
+				+ " Speciality:" + surgeryList[i].getSubSpeciality() << endl;*/
 			i++; //saknades :P
 		}
-		for (int j = 0; j < nrOfoperations; j++) {
-			cout << "ID :" + to_string(surgeryList[j].getId())
-				+ " Time:" + to_string(surgeryList[j].getTimeEstimate())
-				+ " Speciality:" + surgeryList[j].getSubSpeciality() << endl;
-		}
+		
 	}
 	return surgeryList;
 }
