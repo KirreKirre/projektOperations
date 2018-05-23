@@ -27,6 +27,10 @@ surgery* readFromFile(int &nrOfoperations);
 
 int main() {
 
+	surgery* aList;
+	int nrOfOperations = 0;
+	aList = readFromFile(nrOfOperations);
+
 
 	/*the Bin packing problem, se kap 10.1.3*/
 
@@ -145,14 +149,13 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 		cout << "Theater nr: " + to_string(i)
 			+ "\tTime available  H: " + to_string(H) + " M: " + to_string(M) << endl;
 
+		float procentage = float(theaters[i].getSchedueldTime()) / float(theaters[i].getTimeAvalible()) * 100;
+		cout << "Time used " + to_string(procentage) +" % "<<endl;
 		cout << "\n surgery lengths :"; //need get surgery info.
-		for (int j = 0; j <1/*theaters[i]*/; j++) {
-
+		for (int j = 0; j <theaters[i].getNumberOfSurgeries(); j++) {
+			cout << to_string(theaters[i].getSurgery(j).getTimeEstimate()) +" ";
 		}
 	}
-
-	
-
 
 }
 

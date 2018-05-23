@@ -52,6 +52,11 @@ int operatingTheater::getTimeAvalible()const
 	return this->timeAvalible;
 }
 
+int operatingTheater::getSchedueldTime() const
+{
+	return this->scheduledTime;
+}
+
 int operatingTheater::getNonSchedueldTime() const
 {
 	return this->timeAvalible - scheduledTime;
@@ -62,7 +67,7 @@ int operatingTheater::getNumberOfSurgeries() const
 	return this->capacity;
 }
 
-surgery operatingTheater::getSurgery(int nr)
+surgery operatingTheater::getSurgery(int nr) const
 {
 	surgery temp;
 	if (nr > -1 && nr < this->nrOfSurgerys) {
