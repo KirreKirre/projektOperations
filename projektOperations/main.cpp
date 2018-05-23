@@ -19,6 +19,9 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
+
+void displayScheduel(const operatingTheater theaters[],const int nrOfTheaters);
+
 surgery* readFromFile(int &nrOfoperations);
 
 int main() {
@@ -127,13 +130,28 @@ surgery * readFromFile(int &nrOfoperations)
 	string idString;
 	string speciality;
 	string timeString;
-	surgery* surgeryList = new surgery[30]; //dynamic
+	int capacity = 30;
+	surgery* surgeryList = new surgery[capacity]; //dynamic
 
 	if (surgeryFile.is_open())
 	{
+
 		int i = 0;
 		while (std::getline(surgeryFile, line))
 		{
+			//expand if needed 
+			if (nrOfoperations == capacity) {
+				capacity += 30;
+				
+				surgery * temp = new surgery[capacity];
+				for (int j = 0; j < nrOfoperations; j++) {
+					temp[j] = surgeryList[j];
+					delete []surgeryList; ///konstigt [] CHECK
+					surgeryList = temp;
+
+				}
+			}
+
 			nrOfoperations++;
 			idString = line.substr(0, line.find(','));
 			speciality = line.substr(line.find(',') + 1, (line.find_last_of(',') - line.find_first_of(',') - 1));
