@@ -62,7 +62,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 	for (int i = 0; i < nrOfSurgeries; i++) {
 		sortedOperations.insert(operations[i], operations[i].getTimeEstimate());
 	}
-	//
+	//Adds the first one in line to the room a "counter" is currently on, if it fits. (Indeed, it never checks the first ones again)
 	int atIndex = 0;
 	while (atIndex < nrOfTheaters)
 	{
