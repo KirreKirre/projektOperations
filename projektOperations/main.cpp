@@ -90,30 +90,40 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 	{
 		bool added = false;
 		int delta = 0;
-		int indexForDelta = 0;
+		int indexForDelta = -1;
 		for (int i = 0; i < nrOfTheaters; i++)
 		{
 			int roomDelta = theaters[i].getSchedueldTime() - sortedOperations.peek().getTimeEstimate();
-			if (roomDelta >= 0)
+			if (roomDelta >= 0) /*Makes sure delta is positive and therefore fits*/
 			{
-				if (i == 0)
+				if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
 				{
-					delta = theaters[i].getSchedueldTime() - sortedOperations.peek().getTimeEstimate();
 					indexForDelta = 0;
+					i = nrOfTheaters;
 				}
 				else
 				{
-					if (roomDelta < delta)
+					if (i == 0) /*If its the first room*/
 					{
 						delta = roomDelta;
-						indexForDelta = i;
+						indexForDelta = 0;
+					}
+					else
+					{
+						if (roomDelta < delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
+						{
+							delta = roomDelta;
+							indexForDelta = i;
+						}
 					}
 				}
 			}
 		}
-		/*Om värdet är förändrat, lägg till*/
-		theaters[indexForDelta].addSurgery(sortedOperations.extract());
-		bool added = true;
+		if (indexForDelta >= 0) /*If indexForDelta has been changed*/
+		{
+			theaters[indexForDelta].addSurgery(sortedOperations.extract());
+			bool added = true;
+		}
 
 	} while (added);
 }
