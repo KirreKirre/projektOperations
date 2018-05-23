@@ -139,6 +139,21 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 		+ "\n number Of unschedueld surgeries : " + to_string(unplaned) << endl;
 
 
+	for (int i = 0; i < nrOfTheaters; i++) {
+		int H = theaters[i].getTimeAvalible() / 60;
+		int M = theaters[i].getTimeAvalible() % 60;
+		cout << "Theater nr: " + to_string(i)
+			+ "\tTime available  H: " + to_string(H) + " M: " + to_string(M) << endl;
+
+		cout << "\n surgery lengths :"; //need get surgery info.
+		for (int j = 0; j <1/*theaters[i]*/; j++) {
+
+		}
+	}
+
+	
+
+
 }
 
 surgery * readFromFile(int &nrOfoperations)
