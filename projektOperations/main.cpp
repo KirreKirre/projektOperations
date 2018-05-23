@@ -74,9 +74,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 		{
 			atIndex++;
 		}
-
 	}
-
 }
 
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
