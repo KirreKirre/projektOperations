@@ -31,9 +31,14 @@ int main() {
 	int nrOfOperations = 0;
 	aList = readFromFile(nrOfOperations);
 
-
+	for (int i = 0; i < nrOfOperations; i++) {
+		cout << "ID :" + to_string(aList[i].getId()) 
+			+ " Time:" + to_string(aList[i].getTimeEstimate()) 
+			+ " Speciality:" + aList[i].getSubSpeciality()<<endl;
+	}
 	/*the Bin packing problem, se kap 10.1.3*/
 
+	getchar();
 	return 0;
 }
 
@@ -159,7 +164,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 
 }
 
-surgery * readFromFile(int &nrOfoperations)
+surgery *readFromFile(int &nrOfoperations)
 {
 	ifstream surgeryFile("Operationer_1a.txt"); /*Statiskt namn*/
 	string line;
@@ -178,25 +183,36 @@ surgery * readFromFile(int &nrOfoperations)
 			//expand if needed 
 			if (nrOfoperations == capacity) {
 				capacity += 30;
-				
+
 				surgery * temp = new surgery[capacity];
 				for (int j = 0; j < nrOfoperations; j++) {
 					temp[j] = surgeryList[j];
-					delete []surgeryList; ///konstigt [] CHECK
+					delete[]surgeryList; ///konstigt [] CHECK
 					surgeryList = temp;
 
 				}
 			}
 
 			nrOfoperations++;
+			
 			idString = line.substr(0, line.find(','));
 			speciality = line.substr(line.find(',') + 1, (line.find_last_of(',') - line.find_first_of(',') - 1));
 			timeString = line.substr(line.find_last_of(',') + 1, (line.length() - line.find_last_of(',')));
 
 			int id = std::stoi(idString, nullptr);
 			int time = std::stoi(timeString, nullptr);
-			surgeryList[i] = surgery(id, speciality, time);
+			surgery temp(id, speciality, time);
+			surgeryList[i] = temp;
 
+			cout << "ID :" + to_string(surgeryList[i].getId())
+				+ " Time:" + to_string(surgeryList[i].getTimeEstimate())
+				+ " Speciality:" + surgeryList[i].getSubSpeciality() << endl;
+			i++ //saknades :P
+		}
+		for (int j = 0; j < nrOfoperations; j++) {
+			cout << "ID :" + to_string(surgeryList[j].getId())
+				+ " Time:" + to_string(surgeryList[j].getTimeEstimate())
+				+ " Speciality:" + surgeryList[j].getSubSpeciality() << endl;
 		}
 	}
 	return surgeryList;
