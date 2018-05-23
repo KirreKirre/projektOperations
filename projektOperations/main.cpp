@@ -103,18 +103,10 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 				}
 				else
 				{
-					if (i == 0) /*If its the first room*/
+					if (roomDelta < delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
 					{
 						delta = roomDelta;
-						indexForDelta = 0;
-					}
-					else
-					{
-						if (roomDelta < delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
-						{
-							delta = roomDelta;
-							indexForDelta = i;
-						}
+						indexForDelta = i;
 					}
 				}
 			}
