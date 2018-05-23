@@ -207,7 +207,7 @@ surgery *readFromFile(int &nrOfoperations)
 			cout << "ID :" + to_string(surgeryList[i].getId())
 				+ " Time:" + to_string(surgeryList[i].getTimeEstimate())
 				+ " Speciality:" + surgeryList[i].getSubSpeciality() << endl;
-			i++ //saknades :P
+			i++; //saknades :P
 		}
 		for (int j = 0; j < nrOfoperations; j++) {
 			cout << "ID :" + to_string(surgeryList[j].getId())
