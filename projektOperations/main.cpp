@@ -79,7 +79,43 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
+	Heap<surgery>sortedOperations(type);
 
+	for (int i = 0; i < nrOfSurgeries; i++) {
+		sortedOperations.insert(operations[i], operations[i].getTimeEstimate());
+	}
+
+	bool added = false;
+	do
+	{
+		bool added = false;
+		int delta = 0;
+		int indexForDelta = 0;
+		for (int i = 0; i < nrOfTheaters; i++)
+		{
+			int roomDelta = theaters[i].getSchedueldTime() - sortedOperations.peek().getTimeEstimate();
+			if (roomDelta >= 0)
+			{
+				if (i == 0)
+				{
+					delta = theaters[i].getSchedueldTime() - sortedOperations.peek().getTimeEstimate();
+					indexForDelta = 0;
+				}
+				else
+				{
+					if (roomDelta < delta)
+					{
+						delta = roomDelta;
+						indexForDelta = i;
+					}
+				}
+			}
+		}
+		/*Om värdet är förändrat, lägg till*/
+		theaters[indexForDelta].addSurgery(sortedOperations.extract());
+		bool added = true;
+
+	} while (added);
 }
 
 surgery * readFromFile(int &nrOfoperations)
