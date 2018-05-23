@@ -42,7 +42,7 @@ int main() {
 	}
 
 	nextFit(aList, nrOfOperations, MIN, room, 3);
-
+	displaySchedule(room, 3, MIN, nrOfOperations);
 	/*the Bin packing problem, se kap 10.1.3*/
 
 	getchar();
@@ -62,7 +62,7 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 	{
 		bool added = false;
 
-		for (int i = 0; i < nrOfSurgeries/*nrOfTheaters*/; i++) {
+		for (int i = 0; i < /*nrOfSurgeries*/nrOfTheaters; i++) {
 			//Adds the first one in line to the room most to the "left", if it fits
 			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getNonSchedueldTime()) {
 				theaters[i].addSurgery(sortedOperations.extract());
@@ -158,7 +158,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 	for (int i = 0; i < nrOfTheaters; i++) {
 		int H = theaters[i].getTimeAvalible() / 60;
 		int M = theaters[i].getTimeAvalible() % 60;
-		cout << "Theater nr: " + to_string(i)
+		cout << "\n Theater nr: " + to_string(i)
 			+ "\tTime available  H: " + to_string(H) + " M: " + to_string(M) << endl;
 
 		float procentage = float(theaters[i].getSchedueldTime()) / float(theaters[i].getTimeAvalible()) * 100;
