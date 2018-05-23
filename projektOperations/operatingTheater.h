@@ -41,6 +41,7 @@ public:
 	int getNonSchedueldTime()const;
 	int getNumberOfSurgeries()const;
 
+	surgery getSurgery(int nr);
 
 	operatingTheater &operator=(const operatingTheater &other);
 

@@ -62,6 +62,16 @@ int operatingTheater::getNumberOfSurgeries() const
 	return this->capacity;
 }
 
+surgery operatingTheater::getSurgery(int nr)
+{
+	surgery temp;
+	if (nr > -1 && nr < this->nrOfSurgerys) {
+		temp = this->surgeryList[nr];
+	}
+
+	return temp;
+}
+
 operatingTheater & operatingTheater::operator=(const operatingTheater & other)
 {
 	if (this != &other) {
