@@ -76,7 +76,10 @@ surgery & surgery::operator=(const surgery & other)
 {
 	if (this != &other)
 	{
-		this->setSurgery(other.getId(), other.getSubSpeciality(), other.getTimeEstimate());
+		//this->setSurgery(other.getId(), other.getSubSpeciality(), other.getTimeEstimate());
+		this->iD = other.iD;
+		this->subSpeciality = other.subSpeciality;
+		this->timeEstimate = other.timeEstimate;
 	}
 	return *this;
 }
