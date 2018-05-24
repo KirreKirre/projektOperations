@@ -23,18 +23,49 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries);
 
-surgery* readFromFile(int &nrOfoperations);
+surgery* readFromFile(int &nrOfoperations, int &menuChoice);
 
 int main() {
 
 	surgery* aList;
 	int nrOfOperations = 0;
-	aList = readFromFile(nrOfOperations);
 	operatingTheater room[3];
-	room[0].setTimeAvalible(1440);
-	room[1].setTimeAvalible(1220);
-	room[2].setTimeAvalible(1000);
+	int menuChoice = 0;
+	/*Scenarios:
+	uppgift 1 med fil 1a MINHEAP
+	Uppgift 1 med fil 1a MAXHEAP
+	Uppgift 1 med fil 1b MINHEAP
+	Uppgift 1 med fil 1b MAXHEAP
+	Uppgift 2 med fil 2 MAXHEAP
+	Uppgift 2 med fil 2 MINHEAP
+	*/
+	cout << "1: Uppgift 1a\n2: Uppgift 1b\n3: Uppgift 2" << endl;
+	cin >> menuChoice;
+	cin.ignore();
+	if (menuChoice == 1)
+	{
+		room[0].setTimeAvalible(660);
+		room[1].setTimeAvalible(660);
+		room[2].setTimeAvalible(660);
+		aList = readFromFile(nrOfOperations, menuChoice);
 
+	}
+	else if (menuChoice == 2)
+	{
+		room[0].setTimeAvalible(660);
+		room[1].setTimeAvalible(660);
+		room[2].setTimeAvalible(660);
+		aList = readFromFile(nrOfOperations, menuChoice);
+
+	}
+	else if (menuChoice == 3)
+	{
+		room[0].setTimeAvalible(1440);
+		room[1].setTimeAvalible(1220);
+		room[2].setTimeAvalible(1000);
+		aList = readFromFile(nrOfOperations, menuChoice);
+
+	}
 	//for (int i = 0; i < nrOfOperations; i++) {
 	//	cout << "ID :" + to_string(aList[i].getId())
 	//		+ " Time:" + to_string(aList[i].getTimeEstimate())
@@ -175,9 +206,22 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 
 }
 
-surgery *readFromFile(int &nrOfoperations)
+surgery *readFromFile(int &nrOfoperations, int &menuChoice)
 {
-	ifstream surgeryFile("Operationer_2.txt"); /*Statiskt namn*/
+	string fileName;
+	if (menuChoice == 1)
+	{
+		fileName = "Operationer_1a.txt";
+	}
+	else if (menuChoice == 2)
+	{
+		fileName = "Operationer_1b.txt";
+	}
+	else if (menuChoice == 3)
+	{
+		fileName = "Operationer_2.txt";
+	}
+	ifstream surgeryFile(fileName);
 	string line;
 	string idString;
 	string speciality;
