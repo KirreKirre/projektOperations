@@ -13,8 +13,8 @@ private:
 
 	surgery* surgeryList;
 	int capacity = 20;
-	int nrOfSurgeries ;
-	
+	int nrOfSurgeries;
+
 	void expand()
 	{
 		if (this->nrOfSurgeries == this->capacity)
@@ -44,7 +44,7 @@ public:
 	int getNonSchedueldTime()const;
 	int getNumberOfSurgeries()const;
 
-	surgery getSurgery(int nr)const ;
+	surgery getSurgery(int nr)const;
 
 	operatingTheater &operator=(const operatingTheater &other);
 

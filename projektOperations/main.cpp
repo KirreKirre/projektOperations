@@ -26,6 +26,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 surgery* readFromFile(int &nrOfoperations, int &menuChoice);
 
 int main() {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	surgery* aList;
 	int nrOfOperations = 0;
@@ -44,27 +45,62 @@ int main() {
 	cin.ignore();
 	if (menuChoice == 1)
 	{
-		room[0].setTimeAvalible(660);
-		room[1].setTimeAvalible(660);
-		room[2].setTimeAvalible(660);
+		operatingTheater nextFitRoom[3];
+		operatingTheater bestFitRoom[3];
+		for (int i = 0; i < 3; i++)
+		{
+			room[i].setTimeAvalible(660);
+			nextFitRoom[i].setTimeAvalible(660);
+			bestFitRoom[i].setTimeAvalible(660);
+		}
 		aList = readFromFile(nrOfOperations, menuChoice);
+		firstFit(aList, nrOfOperations, MIN, room, 3);
+		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
+		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
+		displaySchedule(room, 3, MIN, nrOfOperations);
+		displaySchedule(nextFitRoom, 3, MIN, nrOfOperations);
+		displaySchedule(bestFitRoom, 3, MIN, nrOfOperations);
 
 	}
 	else if (menuChoice == 2)
 	{
-		room[0].setTimeAvalible(660);
-		room[1].setTimeAvalible(660);
-		room[2].setTimeAvalible(660);
+		operatingTheater nextFitRoom[3];
+		operatingTheater bestFitRoom[3];
+		for (int i = 0; i < 3; i++)
+		{
+			room[i].setTimeAvalible(660);
+			nextFitRoom[i].setTimeAvalible(660);
+			bestFitRoom[i].setTimeAvalible(660);
+		}
 		aList = readFromFile(nrOfOperations, menuChoice);
+		firstFit(aList, nrOfOperations, MIN, room, 3);
+		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
+		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
+		displaySchedule(room, 3, MIN, nrOfOperations);
+		displaySchedule(nextFitRoom, 3, MIN, nrOfOperations);
+		displaySchedule(bestFitRoom, 3, MIN, nrOfOperations);
 
 	}
 	else if (menuChoice == 3)
 	{
+		operatingTheater nextFitRoom[3];
+		operatingTheater bestFitRoom[3];
 		room[0].setTimeAvalible(1440);
+		nextFitRoom[0].setTimeAvalible(1440);
+		bestFitRoom[0].setTimeAvalible(1440);
 		room[1].setTimeAvalible(1220);
+		nextFitRoom[1].setTimeAvalible(1220);
+		bestFitRoom[1].setTimeAvalible(1220);
 		room[2].setTimeAvalible(1000);
+		nextFitRoom[2].setTimeAvalible(1000);
+		bestFitRoom[2].setTimeAvalible(1000);
 		aList = readFromFile(nrOfOperations, menuChoice);
-
+		firstFit(aList, nrOfOperations, MIN, room, 3);
+		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
+		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
+		displaySchedule(room, 3, MIN, nrOfOperations);
+		displaySchedule(nextFitRoom, 3, MIN, nrOfOperations);
+		displaySchedule(bestFitRoom, 3, MIN, nrOfOperations);
 	}
 	//for (int i = 0; i < nrOfOperations; i++) {
 	//	cout << "ID :" + to_string(aList[i].getId())
@@ -72,8 +108,9 @@ int main() {
 	//		+ " Speciality:" + aList[i].getSubSpeciality() << endl;
 	//} /*Föredrar utmatning i funktionerna*/
 
-	nextFit(aList, nrOfOperations, MIN, room, 3);
-	displaySchedule(room, 3, MIN, nrOfOperations);
+	//nextFit(aList, nrOfOperations, MIN, room, 3);
+	//displaySchedule(room, 3, MIN, nrOfOperations);
+
 	/*the Bin packing problem, se kap 10.1.3*/
 
 	getchar();
@@ -91,14 +128,14 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 	bool added = false;
 	do
 	{
-		bool added = false;
+		added = false;
 
 		for (int i = 0; i < nrOfTheaters; i++) {
 			//Adds the first one in line to the room most to the "left", if it fits
 			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getNonSchedueldTime()) {
 				theaters[i].addSurgery(sortedOperations.extract());
 				i = nrOfSurgeries;
-				bool added = true;
+				added = true;
 			}
 		}
 
@@ -139,7 +176,7 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 	bool added = false;
 	do
 	{
-		bool added = false;
+		added = false;
 		int delta = 0;
 		int indexForDelta = -1;
 		for (int i = 0; i < nrOfTheaters; i++)
@@ -165,7 +202,7 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 		if (indexForDelta >= 0) /*If indexForDelta has been changed*/
 		{
 			theaters[indexForDelta].addSurgery(sortedOperations.extract());
-			bool added = true;
+			added = true;
 		}
 
 	} while (added);
@@ -227,7 +264,7 @@ surgery *readFromFile(int &nrOfoperations, int &menuChoice)
 	string speciality;
 	string timeString;
 	int capacity = 30;
-	surgery* surgeryList = new surgery[capacity]; //dynamic
+	surgery* surgeryList = new surgery[capacity]; //dynamic /*MÅste nog ha den här utanför koden*/
 
 	if (surgeryFile.is_open())
 	{
@@ -266,5 +303,6 @@ surgery *readFromFile(int &nrOfoperations, int &menuChoice)
 		}
 
 	}
+	surgeryFile.close();
 	return surgeryList;
 }
