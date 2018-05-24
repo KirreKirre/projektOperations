@@ -47,7 +47,7 @@ int main() {
 
 	while (menuChoice != 0) {
 
-		cout << "1: Uppgift 1aMIN\n2: Uppgift 1aMAX\n3: Uppgift 1bMIN\n4: Uppgift 1bMAX" << endl;
+		cout << "1: Uppgift 1aMIN\n2: Uppgift 1aMAX\n3: Uppgift 1bMIN\n4: Uppgift 1bMAX\n5: Uppgift 2MIN\n6: Uppgift 2MAX" << endl;
 		cin >> menuChoice;
 		cin.ignore();
 		if (menuChoice == 1)
