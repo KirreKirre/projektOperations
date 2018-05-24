@@ -21,7 +21,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
 
-void displaySchedule(const operatingTheater theaters[],const int nrOfTheaters,HeapType type,const int nrOfSurgeries);
+void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries);
 
 surgery* readFromFile(int &nrOfoperations);
 
@@ -36,9 +36,9 @@ int main() {
 	room[2].setTimeAvalible(1000);
 
 	for (int i = 0; i < nrOfOperations; i++) {
-		cout << "ID :" + to_string(aList[i].getId()) 
-			+ " Time:" + to_string(aList[i].getTimeEstimate()) 
-			+ " Speciality:" + aList[i].getSubSpeciality()<<endl;
+		cout << "ID :" + to_string(aList[i].getId())
+			+ " Time:" + to_string(aList[i].getTimeEstimate())
+			+ " Speciality:" + aList[i].getSubSpeciality() << endl;
 	}
 
 	nextFit(aList, nrOfOperations, MIN, room, 3);
@@ -145,7 +145,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 	/////RELEVANT INFO
 
 	int unplaned = nrOfSurgeries;
-	for (int i = 0; i < nrOfTheaters;i++) {
+	for (int i = 0; i < nrOfTheaters; i++) {
 		unplaned -= theaters[i].getNumberOfSurgeries();
 	}
 	cout << "************************************************************" << endl;
@@ -156,24 +156,28 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 
 
 	for (int i = 0; i < nrOfTheaters; i++) {
-		int H = theaters[i].getTimeAvalible() / 60;
-		int M = theaters[i].getTimeAvalible() % 60;
-		cout << "\n Theater nr: " + to_string(i)
-			+ "\tTime available  H: " + to_string(H) + " M: " + to_string(M) << endl;
+		int totalHours = theaters[i].getTimeAvalible() / 60;
+		int totalMinutes = theaters[i].getTimeAvalible() % 60;
+		int unusedTimeHours = theaters[i].getNonSchedueldTime() / 60;
+		int unusedTimeMinutes = theaters[i].getNonSchedueldTime() % 60;
+		cout << "\nTheater nr: " + to_string(i)
+			+ "\nTime available  H: " + to_string(totalHours) + " M: " + to_string(totalMinutes)
+			+ "\nUnused time H:" + to_string(unusedTimeHours) + " M: " + to_string(unusedTimeMinutes) << endl;
 
 		float procentage = float(theaters[i].getSchedueldTime()) / float(theaters[i].getTimeAvalible()) * 100;
-		cout << "Time used " + to_string(procentage) +" % "<<endl;
-		cout << "\n surgery lengths :"; //need get surgery info.
-		for (int j = 0; j <theaters[i].getNumberOfSurgeries(); j++) {
-			cout << to_string(theaters[i].getSurgery(j).getTimeEstimate()) +" ";
+		cout << "Time used " + to_string(procentage) + " % " << endl;
+		cout << "Surgery lengths :"; //need get surgery info.
+		for (int j = 0; j < theaters[i].getNumberOfSurgeries(); j++) {
+			cout << to_string(theaters[i].getSurgery(j).getTimeEstimate()) + " ";
 		}
+		cout << endl;
 	}
 
 }
 
 surgery *readFromFile(int &nrOfoperations)
 {
-	ifstream surgeryFile("Operationer_1a.txt"); /*Statiskt namn*/
+	ifstream surgeryFile("Operationer_2.txt"); /*Statiskt namn*/
 	string line;
 	string idString;
 	string speciality;
@@ -194,14 +198,13 @@ surgery *readFromFile(int &nrOfoperations)
 				surgery * temp = new surgery[capacity];
 				for (int j = 0; j < nrOfoperations; j++) {
 					temp[j] = surgeryList[j];
-					delete[]surgeryList; ///konstigt [] CHECK
-					surgeryList = temp;
-
 				}
+				delete[]surgeryList; ///konstigt [] CHECK
+				surgeryList = temp;
 			}
 
 			nrOfoperations++;
-			
+
 			idString = line.substr(0, line.find(','));
 			speciality = line.substr(line.find(',') + 1, (line.find_last_of(',') - line.find_first_of(',') - 1));
 			timeString = line.substr(line.find_last_of(',') + 1, (line.length() - line.find_last_of(',')));
@@ -216,7 +219,7 @@ surgery *readFromFile(int &nrOfoperations)
 				+ " Speciality:" + surgeryList[i].getSubSpeciality() << endl;*/
 			i++; //saknades :P
 		}
-		
+
 	}
 	return surgeryList;
 }

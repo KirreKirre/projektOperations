@@ -25,7 +25,7 @@ private:
 			{
 				temp[i] = this->surgeryList[i];
 			}
-			delete surgeryList;
+			delete[] surgeryList;
 			surgeryList = temp;
 		}
 	};
