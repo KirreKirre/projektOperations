@@ -446,7 +446,8 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 		+ "\n number Of surgeries : " + to_string(nrOfSurgeries)
 		+ "\n number Of unschedueld surgeries : " + to_string(unplaned) << endl;
 
-
+	float* floatArr = new float[nrOfTheaters];
+	int arrCounter = 0;
 	for (int i = 0; i < nrOfTheaters; i++) {
 		int totalHours = theaters[i].getTimeAvalible() / 60;
 		int totalMinutes = theaters[i].getTimeAvalible() % 60;
@@ -457,6 +458,8 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 			+ "\nUnused time H:" + to_string(unusedTimeHours) + " M: " + to_string(unusedTimeMinutes) << endl;
 
 		float procentage = float(theaters[i].getSchedueldTime()) / float(theaters[i].getTimeAvalible()) * 100;
+		floatArr[arrCounter] = procentage;
+		arrCounter++;
 		cout << "Time used " + to_string(procentage) + " % " << endl;
 		cout << "Surgery lengths :"; //need get surgery info.
 		for (int j = 0; j < theaters[i].getNumberOfSurgeries(); j++) {
@@ -464,7 +467,14 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 		}
 		cout << endl;
 	}
-
+	float averagePercentage = 0;
+	for (int i = 0; i < arrCounter; i++)
+	{
+		averagePercentage += floatArr[i];
+	}
+	averagePercentage = averagePercentage / arrCounter;
+	cout << "Average percentage: " + to_string(averagePercentage) + " %" << endl;
+	delete[] floatArr;
 }
 
 surgery *readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList)
