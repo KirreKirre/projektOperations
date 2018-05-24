@@ -384,19 +384,22 @@ void bestFitMinDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 		for (int i = 0; i < nrOfTheaters; i++)
 		{
 			int roomDelta = theaters[i].getNonSchedueldTime() - sortedOperations.peek().getTimeEstimate();
-			if (roomDelta >= 0) /*Makes sure delta is positive and therefore fits*/
+			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getNonSchedueldTime())
 			{
-				if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
+				if (roomDelta >= 0) /*Makes sure delta is positive and therefore fits*/
 				{
-					indexForDelta = 0;
-					i = nrOfTheaters;
-				}
-				else
-				{
-					if (roomDelta < delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
+					if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
 					{
-						delta = roomDelta;
-						indexForDelta = i;
+						indexForDelta = 0;
+						i = nrOfTheaters;
+					}
+					else
+					{
+						if (roomDelta < delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
+						{
+							delta = roomDelta;
+							indexForDelta = i;
+						}
 					}
 				}
 			}
@@ -427,19 +430,22 @@ void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 		for (int i = 0; i < nrOfTheaters; i++)
 		{
 			int roomDelta = theaters[i].getNonSchedueldTime() - sortedOperations.peek().getTimeEstimate();
-			if (roomDelta >= 0) /*Makes sure delta is positive and therefore fits*/
+			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getNonSchedueldTime())
 			{
-				if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
+				if (roomDelta >= 0) /*Makes sure delta is positive and therefore fits*/
 				{
-					indexForDelta = 0;
-					i = nrOfTheaters;
-				}
-				else
-				{
-					if (roomDelta > delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
+					if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
 					{
-						delta = roomDelta;
-						indexForDelta = i;
+						indexForDelta = 0;
+						i = nrOfTheaters;
+					}
+					else
+					{
+						if (roomDelta > delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
+						{
+							delta = roomDelta;
+							indexForDelta = i;
+						}
 					}
 				}
 			}
