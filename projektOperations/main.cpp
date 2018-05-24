@@ -494,7 +494,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 		averagePercentage += floatArr[i];
 	}
 	averagePercentage = averagePercentage / arrCounter;
-	cout << "Average percentage: " + to_string(averagePercentage) + " %" << endl;
+	cout << " \n Average usage percentage: " + to_string(averagePercentage) + " %" << endl;
 	delete[] floatArr;
 }
 
