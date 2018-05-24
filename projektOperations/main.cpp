@@ -32,7 +32,7 @@ int main() {
 
 	surgery* aList;
 	int nrOfOperations = 0;
-	operatingTheater room[3];
+	operatingTheater room[6];
 	int menuChoice = 0;
 	surgery* surgeryList = new surgery[30];
 	/*Scenarios:
@@ -175,26 +175,105 @@ int main() {
 		//
 
 	}
-	else if (menuChoice == 0)
+	else if (menuChoice == 5)
 	{
-		//operatingTheater nextFitRoom[3];
-		//operatingTheater bestFitRoom[3];
-		//room[0].setTimeAvalible(1440);
-		//nextFitRoom[0].setTimeAvalible(1440);
-		//bestFitRoom[0].setTimeAvalible(1440);
-		//room[1].setTimeAvalible(1220);
-		//nextFitRoom[1].setTimeAvalible(1220);
-		//bestFitRoom[1].setTimeAvalible(1220);
-		//room[2].setTimeAvalible(1000);
-		//nextFitRoom[2].setTimeAvalible(1000);
-		//bestFitRoom[2].setTimeAvalible(1000);
-		//aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
-		//firstFit(aList, nrOfOperations, MIN, room, 3);
-		//nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
-		//bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
-		//displaySchedule(room, 3, MIN, nrOfOperations);
-		//displaySchedule(nextFitRoom, 3, MIN, nrOfOperations);
-		//displaySchedule(bestFitRoom, 3, MIN, nrOfOperations);
+		operatingTheater nextFitRoom[6];
+		operatingTheater bestFitMinDeltaRoom[6];
+		operatingTheater bestFitMaxDeltaRoom[6];
+
+		room[0].setTimeAvalible(660);
+		nextFitRoom[0].setTimeAvalible(660);
+		bestFitMinDeltaRoom[0].setTimeAvalible(660);
+		bestFitMaxDeltaRoom[0].setTimeAvalible(660);
+		room[3].setTimeAvalible(660);
+		nextFitRoom[3].setTimeAvalible(660);
+		bestFitMinDeltaRoom[3].setTimeAvalible(660);
+		bestFitMaxDeltaRoom[3].setTimeAvalible(660);
+
+		room[1].setTimeAvalible(840);
+		nextFitRoom[1].setTimeAvalible(840);
+		bestFitMinDeltaRoom[1].setTimeAvalible(840);
+		bestFitMaxDeltaRoom[1].setTimeAvalible(840);
+		room[4].setTimeAvalible(840);
+		nextFitRoom[4].setTimeAvalible(840);
+		bestFitMinDeltaRoom[4].setTimeAvalible(840);
+		bestFitMaxDeltaRoom[4].setTimeAvalible(840);
+
+		room[2].setTimeAvalible(540);
+		nextFitRoom[2].setTimeAvalible(540);
+		bestFitMinDeltaRoom[2].setTimeAvalible(540);
+		bestFitMaxDeltaRoom[2].setTimeAvalible(540);
+		room[5].setTimeAvalible(540);
+		nextFitRoom[5].setTimeAvalible(540);
+		bestFitMinDeltaRoom[5].setTimeAvalible(540);
+		bestFitMaxDeltaRoom[5].setTimeAvalible(540);
+
+		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+
+		firstFit(aList, nrOfOperations, MIN, room, 6);
+		displaySchedule(room, 6, MIN, nrOfOperations);
+
+		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 6);
+		displaySchedule(nextFitRoom, 6, MIN, nrOfOperations);
+
+
+		bestFitMinDelta(aList, nrOfOperations, MIN, bestFitMinDeltaRoom, 6);
+		displaySchedule(bestFitMinDeltaRoom, 6, MIN, nrOfOperations);
+		//
+
+		bestFitMaxDelta(aList, nrOfOperations, MIN, bestFitMaxDeltaRoom, 6);
+		displaySchedule(bestFitMaxDeltaRoom, 6, MIN, nrOfOperations);
+		//
+	}
+	else if (menuChoice == 6)
+	{
+		operatingTheater nextFitRoom[6];
+		operatingTheater bestFitMinDeltaRoom[6];
+		operatingTheater bestFitMaxDeltaRoom[6];
+
+		room[0].setTimeAvalible(660);
+		nextFitRoom[0].setTimeAvalible(660);
+		bestFitMinDeltaRoom[0].setTimeAvalible(660);
+		bestFitMaxDeltaRoom[0].setTimeAvalible(660);
+		room[3].setTimeAvalible(660);
+		nextFitRoom[3].setTimeAvalible(660);
+		bestFitMinDeltaRoom[3].setTimeAvalible(660);
+		bestFitMaxDeltaRoom[3].setTimeAvalible(660);
+
+		room[1].setTimeAvalible(840);
+		nextFitRoom[1].setTimeAvalible(840);
+		bestFitMinDeltaRoom[1].setTimeAvalible(840);
+		bestFitMaxDeltaRoom[1].setTimeAvalible(840);
+		room[4].setTimeAvalible(840);
+		nextFitRoom[4].setTimeAvalible(840);
+		bestFitMinDeltaRoom[4].setTimeAvalible(840);
+		bestFitMaxDeltaRoom[4].setTimeAvalible(840);
+
+		room[2].setTimeAvalible(540);
+		nextFitRoom[2].setTimeAvalible(540);
+		bestFitMinDeltaRoom[2].setTimeAvalible(540);
+		bestFitMaxDeltaRoom[2].setTimeAvalible(540);
+		room[5].setTimeAvalible(540);
+		nextFitRoom[5].setTimeAvalible(540);
+		bestFitMinDeltaRoom[5].setTimeAvalible(540);
+		bestFitMaxDeltaRoom[5].setTimeAvalible(540);
+
+		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+
+		firstFit(aList, nrOfOperations, MAX, room, 6);
+		displaySchedule(room, 6, MAX, nrOfOperations);
+
+		nextFit(aList, nrOfOperations, MAX, nextFitRoom, 6);
+		displaySchedule(nextFitRoom, 6, MAX, nrOfOperations);
+
+
+		bestFitMinDelta(aList, nrOfOperations, MAX, bestFitMinDeltaRoom, 6);
+		displaySchedule(bestFitMinDeltaRoom, 6, MAX, nrOfOperations);
+		//
+
+		bestFitMaxDelta(aList, nrOfOperations, MAX, bestFitMaxDeltaRoom, 6);
+		displaySchedule(bestFitMaxDeltaRoom, 6, MAX, nrOfOperations);
+		//
 	}
 	//for (int i = 0; i < nrOfOperations; i++) {
 	//	cout << "ID :" + to_string(aList[i].getId())
@@ -392,7 +471,7 @@ surgery *readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList
 	{
 		fileName = "Operationer_1b.txt";
 	}
-	else if (menuChoice == 0)
+	else if (menuChoice == 5 || menuChoice == 6)
 	{
 		fileName = "Operationer_2.txt";
 	}
