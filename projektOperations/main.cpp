@@ -390,7 +390,7 @@ void bestFitMinDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 				{
 					if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
 					{
-						indexForDelta = 0;
+						indexForDelta = i;
 						i = nrOfTheaters;
 					}
 					else
@@ -436,7 +436,7 @@ void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 				{
 					if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
 					{
-						indexForDelta = 0;
+						indexForDelta = i;
 						i = nrOfTheaters;
 					}
 					else
