@@ -114,7 +114,6 @@ int main() {
 			displaySchedule(nextFitRoom, 3, MAX, nrOfOperations);
 			//97 92 96
 
-
 			bestFitMinDelta(aList, nrOfOperations, MAX, bestFitMinDeltaRoom, 3);
 			displaySchedule(bestFitMinDeltaRoom, 3, MAX, nrOfOperations);
 			//
