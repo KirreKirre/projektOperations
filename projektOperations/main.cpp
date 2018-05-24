@@ -25,7 +25,7 @@ void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 
 void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries);
 
-void readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList,int capacity);
+void readFromFile(int &nrOfoperations, int &menuChoice, surgery* &surgeryList, int capacity);
 
 
 int main() {
@@ -66,7 +66,7 @@ int main() {
 				bestFitMinDeltaRoom[i].setTimeAvalible(660);
 				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 			}
-			readFromFile(nrOfOperations, menuChoice, aList,capacity);
+			readFromFile(nrOfOperations, menuChoice, aList, capacity);
 
 			firstFit(aList, nrOfOperations, MIN, room, 3);
 			displaySchedule(room, 3, MIN, nrOfOperations);
@@ -84,8 +84,8 @@ int main() {
 			displaySchedule(bestFitMaxDeltaRoom, 3, MIN, nrOfOperations);
 			//
 
-			delete [] aList;
-			
+			delete[] aList;
+
 
 		}
 		else if (menuChoice == 2)
@@ -103,7 +103,7 @@ int main() {
 				bestFitMinDeltaRoom[i].setTimeAvalible(660);
 				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 			}
-			readFromFile(nrOfOperations, menuChoice, aList,capacity);
+			readFromFile(nrOfOperations, menuChoice, aList, capacity);
 
 			firstFit(aList, nrOfOperations, MAX, room, 3);
 			displaySchedule(room, 3, MAX, nrOfOperations);
@@ -139,7 +139,7 @@ int main() {
 				bestFitMinDeltaRoom[i].setTimeAvalible(660);
 				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 			}
-			readFromFile(nrOfOperations, menuChoice, aList,capacity);
+			readFromFile(nrOfOperations, menuChoice, aList, capacity);
 
 			firstFit(aList, nrOfOperations, MIN, room, 3);
 			displaySchedule(room, 3, MIN, nrOfOperations);
@@ -174,7 +174,7 @@ int main() {
 				bestFitMinDeltaRoom[i].setTimeAvalible(660);
 				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 			}
-			readFromFile(nrOfOperations, menuChoice, aList,capacity);
+			readFromFile(nrOfOperations, menuChoice, aList, capacity);
 
 			firstFit(aList, nrOfOperations, MAX, room, 3);
 			displaySchedule(room, 3, MAX, nrOfOperations);
@@ -229,7 +229,7 @@ int main() {
 			bestFitMinDeltaRoom[5].setTimeAvalible(540);
 			bestFitMaxDeltaRoom[5].setTimeAvalible(540);
 
-			readFromFile(nrOfOperations, menuChoice, aList,capacity);
+			readFromFile(nrOfOperations, menuChoice, aList, capacity);
 
 			firstFit(aList, nrOfOperations, MIN, room, 6);
 			displaySchedule(room, 6, MIN, nrOfOperations);
@@ -284,7 +284,7 @@ int main() {
 			bestFitMinDeltaRoom[5].setTimeAvalible(540);
 			bestFitMaxDeltaRoom[5].setTimeAvalible(540);
 
-			readFromFile(nrOfOperations, menuChoice, aList,capacity);
+			readFromFile(nrOfOperations, menuChoice, aList, capacity);
 
 			firstFit(aList, nrOfOperations, MAX, room, 6);
 			displaySchedule(room, 6, MAX, nrOfOperations);
@@ -498,7 +498,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 	delete[] floatArr;
 }
 
-void readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList,int capacity)
+void readFromFile(int &nrOfoperations, int &menuChoice, surgery* &surgeryList, int capacity)
 {
 	string fileName;
 	if (menuChoice == 1 || menuChoice == 2)
@@ -557,5 +557,4 @@ void readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList,int
 
 	}
 	surgeryFile.close();
-
 }
