@@ -47,6 +47,7 @@ int main() {
 	*/
 
 	while (menuChoice != 0) {
+		
 		system("cls");
 		cout << "1: Uppgift 1aMIN\n2: Uppgift 1aMAX\n3: Uppgift 1bMIN\n4: Uppgift 1bMAX\n5: Uppgift 2MIN\n6: Uppgift 2MAX\n0: Exit" << endl;
 		cin >> menuChoice;
@@ -122,7 +123,7 @@ int main() {
 			displaySchedule(bestFitMaxDeltaRoom, 3, MAX, nrOfOperations);
 			//
 			delete[] aList;
-
+			cout << " Press return to clear" << endl;
 		}
 		else if (menuChoice == 3)
 		{
@@ -157,7 +158,7 @@ int main() {
 			displaySchedule(bestFitMaxDeltaRoom, 3, MIN, nrOfOperations);
 			//
 			delete[] aList;
-
+			cout << " Press return to clear" << endl;
 		}
 		else if (menuChoice == 4)
 		{
@@ -192,7 +193,7 @@ int main() {
 			displaySchedule(bestFitMaxDeltaRoom, 3, MAX, nrOfOperations);
 			//
 			delete[] aList;
-
+			cout << " Press return to clear" << endl;
 		}
 		else if (menuChoice == 5)
 		{
@@ -246,7 +247,7 @@ int main() {
 			displaySchedule(bestFitMaxDeltaRoom, 6, MIN, nrOfOperations);
 			//
 			delete[] aList;
-
+			cout << " Press return to clear" << endl;
 
 		}
 		else if (menuChoice == 6)
@@ -300,6 +301,7 @@ int main() {
 			displaySchedule(bestFitMaxDeltaRoom, 6, MAX, nrOfOperations);
 			//
 			delete[] aList;
+			cout << " Press return to clear" << endl;
 		}
 		//for (int i = 0; i < nrOfOperations; i++) {
 		//	cout << "ID :" + to_string(aList[i].getId())
@@ -313,6 +315,7 @@ int main() {
 		/*the Bin packing problem, se kap 10.1.3*/
 
 		nrOfOperations = 0;
+		
 		getchar();
 	}
 	//delete[] surgeryList;
@@ -489,6 +492,11 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 		floatArr[arrCounter] = procentage;
 		arrCounter++;
 		cout << "Time used " + to_string(procentage) + " % " << endl;
+		cout << "Surgery ID :";
+			for (int j = 0; j < theaters[i].getNumberOfSurgeries(); j++) {
+				cout << to_string(theaters[i].getSurgery(j).getId()) + " ";
+			}
+		cout << "" << endl;
 		cout << "Surgery lengths :"; //need get surgery info.
 		for (int j = 0; j < theaters[i].getNumberOfSurgeries(); j++) {
 			cout << to_string(theaters[i].getSurgery(j).getTimeEstimate()) + " ";
@@ -503,6 +511,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 	averagePercentage = averagePercentage / arrCounter;
 	cout << " \n Average usage percentage: " + to_string(averagePercentage) + " %" << endl;
 	delete[] floatArr;
+	getchar();
 }
 
 void readFromFile(int &nrOfoperations, int &menuChoice, surgery* &surgeryList, int capacity)
