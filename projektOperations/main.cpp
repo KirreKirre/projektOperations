@@ -33,7 +33,7 @@ int main() {
 
 	surgery* aList;
 	int nrOfOperations = 0;
-	operatingTheater room[6];
+	//operatingTheater room[6];
 	int menuChoice = -1;
 	surgery* surgeryList = new surgery[30];
 	/*Scenarios:
@@ -52,6 +52,7 @@ int main() {
 		cin.ignore();
 		if (menuChoice == 1)
 		{
+			operatingTheater room[3];
 			operatingTheater nextFitRoom[3];
 			operatingTheater bestFitMinDeltaRoom[3];
 			operatingTheater bestFitMaxDeltaRoom[3];
@@ -84,6 +85,7 @@ int main() {
 		}
 		else if (menuChoice == 2)
 		{
+			operatingTheater room[3];
 			operatingTheater nextFitRoom[3];
 			operatingTheater bestFitMinDeltaRoom[3];
 			operatingTheater bestFitMaxDeltaRoom[3];
@@ -117,6 +119,7 @@ int main() {
 		}
 		else if (menuChoice == 3)
 		{
+			operatingTheater room[3];
 			operatingTheater nextFitRoom[3];
 			operatingTheater bestFitMinDeltaRoom[3];
 			operatingTheater bestFitMaxDeltaRoom[3];
@@ -149,6 +152,7 @@ int main() {
 		}
 		else if (menuChoice == 4)
 		{
+			operatingTheater room[3];
 			operatingTheater nextFitRoom[3];
 			operatingTheater bestFitMinDeltaRoom[3];
 			operatingTheater bestFitMaxDeltaRoom[3];
@@ -181,6 +185,7 @@ int main() {
 		}
 		else if (menuChoice == 5)
 		{
+			operatingTheater room[6];
 			operatingTheater nextFitRoom[6];
 			operatingTheater bestFitMinDeltaRoom[6];
 			operatingTheater bestFitMaxDeltaRoom[6];
@@ -228,9 +233,12 @@ int main() {
 			bestFitMaxDelta(aList, nrOfOperations, MIN, bestFitMaxDeltaRoom, 6);
 			displaySchedule(bestFitMaxDeltaRoom, 6, MIN, nrOfOperations);
 			//
+
+
 		}
 		else if (menuChoice == 6)
 		{
+			operatingTheater room[6];
 			operatingTheater nextFitRoom[6];
 			operatingTheater bestFitMinDeltaRoom[6];
 			operatingTheater bestFitMaxDeltaRoom[6];
