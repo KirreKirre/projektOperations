@@ -3,6 +3,8 @@
 #include "Heap.h"
 #include "operatingTheater.h"
 #include <string>
+#include <ctime>
+#include <chrono>
 //firstFit 
 //dum med mer rum
 //checkar var objektet får plats -->bäst med max heap? 
@@ -323,6 +325,9 @@ int main() {
 
 void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
+	clock_t time;
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+
 	Heap<surgery>sortedOperations(type);
 
 	for (int i = 0; i < nrOfSurgeries; i++) {
@@ -344,11 +349,16 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 		}
 
 	} while (added == true);
-
+	chrono::steady_clock::time_point end = chrono::steady_clock::now();
+	time = chrono::duration_cast<chrono::microseconds>(end - start).count();
+	cout << "firstfit ms:" + to_string(time) << endl;
 }
 
 void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
+	clock_t time;
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+
 	Heap<surgery>sortedOperations(type);
 
 	for (int i = 0; i < nrOfSurgeries; i++) {
@@ -367,10 +377,16 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 			atIndex++;
 		}
 	}
+	chrono::steady_clock::time_point end = chrono::steady_clock::now();
+	time = chrono::duration_cast<chrono::microseconds>(end - start).count();
+	cout << "nextfit ms:" + to_string(time) << endl;
 }
 
 void bestFitMinDelta(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
+	clock_t time;
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+
 	Heap<surgery>sortedOperations(type);
 
 	for (int i = 0; i < nrOfSurgeries; i++) {
@@ -413,10 +429,16 @@ void bestFitMinDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 		}
 
 	} while (added);
+	chrono::steady_clock::time_point end = chrono::steady_clock::now();
+	time = chrono::duration_cast<chrono::microseconds>(end - start).count();
+	cout << "bestfitmindelta ms:" + to_string(time) << endl;
 }
 
 void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
+	clock_t time;
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+
 	Heap<surgery>sortedOperations(type);
 
 	for (int i = 0; i < nrOfSurgeries; i++) {
@@ -460,6 +482,9 @@ void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 
 
 	} while (added);
+	chrono::steady_clock::time_point end = chrono::steady_clock::now();
+	time = chrono::duration_cast<chrono::microseconds>(end - start).count();
+	cout << "bestfitmaxdelta ms:" + to_string(time) << endl;
 }
 
 void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries)
