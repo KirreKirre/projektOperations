@@ -200,7 +200,7 @@ inline T Heap<T>::extract()
 	}
 
 	//MAX
-	if (this->heapType == MIN) {
+	if (this->heapType == MAX) {
 		//ska testas
 		while (!stop)
 		{

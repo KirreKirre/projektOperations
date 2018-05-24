@@ -18,7 +18,9 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 //bestFit
 //put in tightest spot right now. 
 
-void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
+void bestFitMinDelta(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
+
+void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
 
 void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries);
@@ -41,67 +43,158 @@ int main() {
 	Uppgift 2 med fil 2 MAXHEAP
 	Uppgift 2 med fil 2 MINHEAP
 	*/
-	cout << "1: Uppgift 1a\n2: Uppgift 1b\n3: Uppgift 2 (DO AVOID DIS WAN NAO)" << endl;
+	cout << "1: Uppgift 1aMIN\n2: Uppgift 1aMAX\n3: Uppgift 1bMIN\n4: Uppgift 1bMAX" << endl;
 	cin >> menuChoice;
 	cin.ignore();
 	if (menuChoice == 1)
 	{
 		operatingTheater nextFitRoom[3];
-		operatingTheater bestFitRoom[3];
+		operatingTheater bestFitMinDeltaRoom[3];
+		operatingTheater bestFitMaxDeltaRoom[3];
+
 		for (int i = 0; i < 3; i++)
 		{
 			room[i].setTimeAvalible(660);
 			nextFitRoom[i].setTimeAvalible(660);
-			bestFitRoom[i].setTimeAvalible(660);
+			bestFitMinDeltaRoom[i].setTimeAvalible(660);
+			bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 		}
 		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+
 		firstFit(aList, nrOfOperations, MIN, room, 3);
-		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
-		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
 		displaySchedule(room, 3, MIN, nrOfOperations);
+		//93 87 81
+
+		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
 		displaySchedule(nextFitRoom, 3, MIN, nrOfOperations);
-		displaySchedule(bestFitRoom, 3, MIN, nrOfOperations);
+		//93 87 81
+
+		bestFitMinDelta(aList, nrOfOperations, MIN, bestFitMinDeltaRoom, 3);
+		displaySchedule(bestFitMinDeltaRoom, 3, MIN, nrOfOperations);
+		//
+
+		bestFitMaxDelta(aList, nrOfOperations, MIN, bestFitMaxDeltaRoom, 3);
+		displaySchedule(bestFitMaxDeltaRoom, 3, MIN, nrOfOperations);
+		//
 
 	}
 	else if (menuChoice == 2)
 	{
 		operatingTheater nextFitRoom[3];
-		operatingTheater bestFitRoom[3];
+		operatingTheater bestFitMinDeltaRoom[3];
+		operatingTheater bestFitMaxDeltaRoom[3];
+
 		for (int i = 0; i < 3; i++)
 		{
 			room[i].setTimeAvalible(660);
 			nextFitRoom[i].setTimeAvalible(660);
-			bestFitRoom[i].setTimeAvalible(660);
+			bestFitMinDeltaRoom[i].setTimeAvalible(660);
+			bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 		}
 		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
-		firstFit(aList, nrOfOperations, MIN, room, 3);
-		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
-		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
-		displaySchedule(room, 3, MIN, nrOfOperations);
-		displaySchedule(nextFitRoom, 3, MIN, nrOfOperations);
-		displaySchedule(bestFitRoom, 3, MIN, nrOfOperations);
+
+		firstFit(aList, nrOfOperations, MAX, room, 3);
+		displaySchedule(room, 3, MAX, nrOfOperations);
+		//97 92 96
+
+		nextFit(aList, nrOfOperations, MAX, nextFitRoom, 3);
+		displaySchedule(nextFitRoom, 3, MAX, nrOfOperations);
+		//97 92 96
+
+
+		bestFitMinDelta(aList, nrOfOperations, MAX, bestFitMinDeltaRoom, 3);
+		displaySchedule(bestFitMinDeltaRoom, 3, MAX, nrOfOperations);
+		//
+
+		bestFitMaxDelta(aList, nrOfOperations, MAX, bestFitMaxDeltaRoom, 3);
+		displaySchedule(bestFitMaxDeltaRoom, 3, MAX, nrOfOperations);
+		//
 
 	}
 	else if (menuChoice == 3)
 	{
 		operatingTheater nextFitRoom[3];
-		operatingTheater bestFitRoom[3];
-		room[0].setTimeAvalible(1440);
-		nextFitRoom[0].setTimeAvalible(1440);
-		bestFitRoom[0].setTimeAvalible(1440);
-		room[1].setTimeAvalible(1220);
-		nextFitRoom[1].setTimeAvalible(1220);
-		bestFitRoom[1].setTimeAvalible(1220);
-		room[2].setTimeAvalible(1000);
-		nextFitRoom[2].setTimeAvalible(1000);
-		bestFitRoom[2].setTimeAvalible(1000);
+		operatingTheater bestFitMinDeltaRoom[3];
+		operatingTheater bestFitMaxDeltaRoom[3];
+
+		for (int i = 0; i < 3; i++)
+		{
+			room[i].setTimeAvalible(660);
+			nextFitRoom[i].setTimeAvalible(660);
+			bestFitMinDeltaRoom[i].setTimeAvalible(660);
+			bestFitMaxDeltaRoom[i].setTimeAvalible(660);
+		}
 		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+
 		firstFit(aList, nrOfOperations, MIN, room, 3);
-		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
-		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
 		displaySchedule(room, 3, MIN, nrOfOperations);
+		//100 94 79
+
+		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
 		displaySchedule(nextFitRoom, 3, MIN, nrOfOperations);
-		displaySchedule(bestFitRoom, 3, MIN, nrOfOperations);
+		//100 94 79
+
+		bestFitMinDelta(aList, nrOfOperations, MIN, bestFitMinDeltaRoom, 3);
+		displaySchedule(bestFitMinDeltaRoom, 3, MIN, nrOfOperations);
+		//
+
+		bestFitMaxDelta(aList, nrOfOperations, MIN, bestFitMaxDeltaRoom, 3);
+		displaySchedule(bestFitMaxDeltaRoom, 3, MIN, nrOfOperations);
+		//
+
+	}
+	else if (menuChoice == 4)
+	{
+		operatingTheater nextFitRoom[3];
+		operatingTheater bestFitMinDeltaRoom[3];
+		operatingTheater bestFitMaxDeltaRoom[3];
+
+		for (int i = 0; i < 3; i++)
+		{
+			room[i].setTimeAvalible(660);
+			nextFitRoom[i].setTimeAvalible(660);
+			bestFitMinDeltaRoom[i].setTimeAvalible(660);
+			bestFitMaxDeltaRoom[i].setTimeAvalible(660);
+		}
+		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+
+		firstFit(aList, nrOfOperations, MAX, room, 3);
+		displaySchedule(room, 3, MAX, nrOfOperations);
+		//100 97 97
+
+		nextFit(aList, nrOfOperations, MAX, nextFitRoom, 3);
+		displaySchedule(nextFitRoom, 3, MAX, nrOfOperations);
+		//55 79 94
+
+		bestFitMinDelta(aList, nrOfOperations, MAX, bestFitMinDeltaRoom, 3);
+		displaySchedule(bestFitMinDeltaRoom, 3, MAX, nrOfOperations);
+		//
+
+		bestFitMaxDelta(aList, nrOfOperations, MAX, bestFitMaxDeltaRoom, 3);
+		displaySchedule(bestFitMaxDeltaRoom, 3, MAX, nrOfOperations);
+		//
+
+	}
+	else if (menuChoice == 0)
+	{
+		//operatingTheater nextFitRoom[3];
+		//operatingTheater bestFitRoom[3];
+		//room[0].setTimeAvalible(1440);
+		//nextFitRoom[0].setTimeAvalible(1440);
+		//bestFitRoom[0].setTimeAvalible(1440);
+		//room[1].setTimeAvalible(1220);
+		//nextFitRoom[1].setTimeAvalible(1220);
+		//bestFitRoom[1].setTimeAvalible(1220);
+		//room[2].setTimeAvalible(1000);
+		//nextFitRoom[2].setTimeAvalible(1000);
+		//bestFitRoom[2].setTimeAvalible(1000);
+		//aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+		//firstFit(aList, nrOfOperations, MIN, room, 3);
+		//nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
+		//bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
+		//displaySchedule(room, 3, MIN, nrOfOperations);
+		//displaySchedule(nextFitRoom, 3, MIN, nrOfOperations);
+		//displaySchedule(bestFitRoom, 3, MIN, nrOfOperations);
 	}
 	//for (int i = 0; i < nrOfOperations; i++) {
 	//	cout << "ID :" + to_string(aList[i].getId())
@@ -167,7 +260,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 	}
 }
 
-void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
+void bestFitMinDelta(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
 {
 	Heap<surgery>sortedOperations(type);
 
@@ -194,6 +287,49 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 				else
 				{
 					if (roomDelta < delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
+					{
+						delta = roomDelta;
+						indexForDelta = i;
+					}
+				}
+			}
+		}
+		if (indexForDelta >= 0) /*If indexForDelta has been changed*/
+		{
+			theaters[indexForDelta].addSurgery(sortedOperations.extract());
+			added = true;
+		}
+
+	} while (added);
+}
+
+void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters)
+{
+	Heap<surgery>sortedOperations(type);
+
+	for (int i = 0; i < nrOfSurgeries; i++) {
+		sortedOperations.insert(operations[i], operations[i].getTimeEstimate());
+	}
+
+	bool added = false;
+	do
+	{
+		added = false;
+		int delta = 0;
+		int indexForDelta = -1;
+		for (int i = 0; i < nrOfTheaters; i++)
+		{
+			int roomDelta = theaters[i].getNonSchedueldTime() - sortedOperations.peek().getTimeEstimate();
+			if (roomDelta >= 0) /*Makes sure delta is positive and therefore fits*/
+			{
+				if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
+				{
+					indexForDelta = 0;
+					i = nrOfTheaters;
+				}
+				else
+				{
+					if (roomDelta > delta || delta == 0) /*if it fits better in this room or, if delta hasnt been changed yet*/
 					{
 						delta = roomDelta;
 						indexForDelta = i;
@@ -248,15 +384,15 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 surgery *readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList)
 {
 	string fileName;
-	if (menuChoice == 1)
+	if (menuChoice == 1 || menuChoice == 2)
 	{
 		fileName = "Operationer_1a.txt";
 	}
-	else if (menuChoice == 2)
+	else if (menuChoice == 3 || menuChoice == 4)
 	{
 		fileName = "Operationer_1b.txt";
 	}
-	else if (menuChoice == 3)
+	else if (menuChoice == 0)
 	{
 		fileName = "Operationer_2.txt";
 	}
