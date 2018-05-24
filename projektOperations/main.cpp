@@ -25,17 +25,18 @@ void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 
 void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries);
 
-surgery* readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList);
+void readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList,int capacity);
 
 
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
+	int capacity = 20;
 	surgery* aList;
 	int nrOfOperations = 0;
 	//operatingTheater room[6];
 	int menuChoice = -1;
-	surgery* surgeryList = new surgery[30];
+	//surgery* surgeryList = new surgery[30];
 	/*Scenarios:
 	uppgift 1 med fil 1a MINHEAP
 	Uppgift 1 med fil 1a MAXHEAP
@@ -52,6 +53,7 @@ int main() {
 		cin.ignore();
 		if (menuChoice == 1)
 		{
+			aList = new surgery[capacity];
 			operatingTheater room[3];
 			operatingTheater nextFitRoom[3];
 			operatingTheater bestFitMinDeltaRoom[3];
@@ -64,7 +66,7 @@ int main() {
 				bestFitMinDeltaRoom[i].setTimeAvalible(660);
 				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 			}
-			aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+			readFromFile(nrOfOperations, menuChoice, aList,capacity);
 
 			firstFit(aList, nrOfOperations, MIN, room, 3);
 			displaySchedule(room, 3, MIN, nrOfOperations);
@@ -82,9 +84,12 @@ int main() {
 			displaySchedule(bestFitMaxDeltaRoom, 3, MIN, nrOfOperations);
 			//
 
+			delete [] aList;
+
 		}
 		else if (menuChoice == 2)
 		{
+			aList = new surgery[capacity];
 			operatingTheater room[3];
 			operatingTheater nextFitRoom[3];
 			operatingTheater bestFitMinDeltaRoom[3];
@@ -97,7 +102,7 @@ int main() {
 				bestFitMinDeltaRoom[i].setTimeAvalible(660);
 				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 			}
-			aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+			readFromFile(nrOfOperations, menuChoice, aList,capacity);
 
 			firstFit(aList, nrOfOperations, MAX, room, 3);
 			displaySchedule(room, 3, MAX, nrOfOperations);
@@ -115,10 +120,12 @@ int main() {
 			bestFitMaxDelta(aList, nrOfOperations, MAX, bestFitMaxDeltaRoom, 3);
 			displaySchedule(bestFitMaxDeltaRoom, 3, MAX, nrOfOperations);
 			//
+			delete[] aList;
 
 		}
 		else if (menuChoice == 3)
 		{
+			aList = new surgery[capacity];
 			operatingTheater room[3];
 			operatingTheater nextFitRoom[3];
 			operatingTheater bestFitMinDeltaRoom[3];
@@ -131,7 +138,7 @@ int main() {
 				bestFitMinDeltaRoom[i].setTimeAvalible(660);
 				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 			}
-			aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+			readFromFile(nrOfOperations, menuChoice, aList,capacity);
 
 			firstFit(aList, nrOfOperations, MIN, room, 3);
 			displaySchedule(room, 3, MIN, nrOfOperations);
@@ -148,10 +155,12 @@ int main() {
 			bestFitMaxDelta(aList, nrOfOperations, MIN, bestFitMaxDeltaRoom, 3);
 			displaySchedule(bestFitMaxDeltaRoom, 3, MIN, nrOfOperations);
 			//
+			delete[] aList;
 
 		}
 		else if (menuChoice == 4)
 		{
+			aList = new surgery[capacity];
 			operatingTheater room[3];
 			operatingTheater nextFitRoom[3];
 			operatingTheater bestFitMinDeltaRoom[3];
@@ -164,7 +173,7 @@ int main() {
 				bestFitMinDeltaRoom[i].setTimeAvalible(660);
 				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
 			}
-			aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+			readFromFile(nrOfOperations, menuChoice, aList,capacity);
 
 			firstFit(aList, nrOfOperations, MAX, room, 3);
 			displaySchedule(room, 3, MAX, nrOfOperations);
@@ -181,10 +190,12 @@ int main() {
 			bestFitMaxDelta(aList, nrOfOperations, MAX, bestFitMaxDeltaRoom, 3);
 			displaySchedule(bestFitMaxDeltaRoom, 3, MAX, nrOfOperations);
 			//
+			delete[] aList;
 
 		}
 		else if (menuChoice == 5)
 		{
+			aList = new surgery[capacity];
 			operatingTheater room[6];
 			operatingTheater nextFitRoom[6];
 			operatingTheater bestFitMinDeltaRoom[6];
@@ -217,7 +228,7 @@ int main() {
 			bestFitMinDeltaRoom[5].setTimeAvalible(540);
 			bestFitMaxDeltaRoom[5].setTimeAvalible(540);
 
-			aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+			readFromFile(nrOfOperations, menuChoice, aList,capacity);
 
 			firstFit(aList, nrOfOperations, MIN, room, 6);
 			displaySchedule(room, 6, MIN, nrOfOperations);
@@ -233,11 +244,13 @@ int main() {
 			bestFitMaxDelta(aList, nrOfOperations, MIN, bestFitMaxDeltaRoom, 6);
 			displaySchedule(bestFitMaxDeltaRoom, 6, MIN, nrOfOperations);
 			//
+			delete[] aList;
 
 
 		}
 		else if (menuChoice == 6)
 		{
+			aList = new surgery[capacity];
 			operatingTheater room[6];
 			operatingTheater nextFitRoom[6];
 			operatingTheater bestFitMinDeltaRoom[6];
@@ -270,7 +283,7 @@ int main() {
 			bestFitMinDeltaRoom[5].setTimeAvalible(540);
 			bestFitMaxDeltaRoom[5].setTimeAvalible(540);
 
-			aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
+			readFromFile(nrOfOperations, menuChoice, aList,capacity);
 
 			firstFit(aList, nrOfOperations, MAX, room, 6);
 			displaySchedule(room, 6, MAX, nrOfOperations);
@@ -286,6 +299,7 @@ int main() {
 			bestFitMaxDelta(aList, nrOfOperations, MAX, bestFitMaxDeltaRoom, 6);
 			displaySchedule(bestFitMaxDeltaRoom, 6, MAX, nrOfOperations);
 			//
+			delete[] aList;
 		}
 
 
@@ -300,9 +314,10 @@ int main() {
 
 		/*the Bin packing problem, se kap 10.1.3*/
 
+		
 		getchar();
 	}
-	delete[] surgeryList;
+	//delete[] surgeryList;
 	return 0;
 }
 
@@ -485,7 +500,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 	delete[] floatArr;
 }
 
-surgery *readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList)
+void readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList,int capacity)
 {
 	string fileName;
 	if (menuChoice == 1 || menuChoice == 2)
@@ -505,7 +520,6 @@ surgery *readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList
 	string idString;
 	string speciality;
 	string timeString;
-	int capacity = 30;
 
 	if (surgeryFile.is_open())
 	{
@@ -545,5 +559,5 @@ surgery *readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList
 
 	}
 	surgeryFile.close();
-	return surgeryList;
+
 }
