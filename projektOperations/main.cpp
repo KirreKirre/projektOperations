@@ -35,11 +35,11 @@ int main() {
 	room[1].setTimeAvalible(1220);
 	room[2].setTimeAvalible(1000);
 
-	for (int i = 0; i < nrOfOperations; i++) {
-		cout << "ID :" + to_string(aList[i].getId())
-			+ " Time:" + to_string(aList[i].getTimeEstimate())
-			+ " Speciality:" + aList[i].getSubSpeciality() << endl;
-	}
+	//for (int i = 0; i < nrOfOperations; i++) {
+	//	cout << "ID :" + to_string(aList[i].getId())
+	//		+ " Time:" + to_string(aList[i].getTimeEstimate())
+	//		+ " Speciality:" + aList[i].getSubSpeciality() << endl;
+	//} /*Föredrar utmatning i funktionerna*/
 
 	nextFit(aList, nrOfOperations, MIN, room, 3);
 	displaySchedule(room, 3, MIN, nrOfOperations);
@@ -214,9 +214,10 @@ surgery *readFromFile(int &nrOfoperations)
 			surgery temp(id, speciality, time);
 			surgeryList[i] = temp;
 
-			/*cout << "ID :" + to_string(surgeryList[i].getId())
+			cout << "ID :" + to_string(surgeryList[i].getId())
 				+ " Time:" + to_string(surgeryList[i].getTimeEstimate())
-				+ " Speciality:" + surgeryList[i].getSubSpeciality() << endl;*/
+				+ " Speciality:" + surgeryList[i].getSubSpeciality() << endl;
+
 			i++; //saknades :P
 		}
 
