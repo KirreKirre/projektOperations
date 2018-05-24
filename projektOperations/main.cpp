@@ -85,6 +85,7 @@ int main() {
 			//
 
 			delete [] aList;
+			
 
 		}
 		else if (menuChoice == 2)
@@ -313,7 +314,7 @@ int main() {
 
 		/*the Bin packing problem, se kap 10.1.3*/
 
-		
+		nrOfOperations = 0;
 		getchar();
 	}
 	//delete[] surgeryList;
