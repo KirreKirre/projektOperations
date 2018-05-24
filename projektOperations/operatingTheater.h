@@ -13,15 +13,15 @@ private:
 
 	surgery* surgeryList;
 	int capacity = 20;
-	int nrOfSurgerys = 0;
-
+	int nrOfSurgeries ;
+	
 	void expand()
 	{
-		if (this->nrOfSurgerys == this->capacity)
+		if (this->nrOfSurgeries == this->capacity)
 		{
 			this->capacity += 10;
 			surgery * temp = new surgery[capacity];
-			for (int i = 0; i < this->nrOfSurgerys; i++)
+			for (int i = 0; i < this->nrOfSurgeries; i++)
 			{
 				temp[i] = this->surgeryList[i];
 			}
@@ -36,12 +36,15 @@ public:
 	~operatingTheater();
 	operatingTheater(const operatingTheater &origObj);
 
+	void setTimeAvalible(int Time);
+
 	void addSurgery(surgery operationToAdd);
 	int getTimeAvalible()const;
-	int getSchedueldTime()const;
+	int getSchedueldTime() const;
+	int getNonSchedueldTime()const;
+	int getNumberOfSurgeries()const;
 
-
-
+	surgery getSurgery(int nr)const ;
 
 	operatingTheater &operator=(const operatingTheater &other);
 

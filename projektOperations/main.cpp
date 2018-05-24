@@ -2,6 +2,7 @@
 #include "surgery.h"
 #include "Heap.h"
 #include "operatingTheater.h"
+#include <string>
 //firstFit 
 //dum med mer rum
 //checkar var objektet får plats -->bäst med max heap? 
@@ -19,13 +20,32 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type, operatingTheater theaters[], const int nrOfTheaters);
 
+
+void displaySchedule(const operatingTheater theaters[],const int nrOfTheaters,HeapType type,const int nrOfSurgeries);
+
 surgery* readFromFile(int &nrOfoperations);
 
 int main() {
 
+	surgery* aList;
+	int nrOfOperations = 0;
+	aList = readFromFile(nrOfOperations);
+	operatingTheater room[3];
+	room[0].setTimeAvalible(1440);
+	room[1].setTimeAvalible(1220);
+	room[2].setTimeAvalible(1000);
 
+	for (int i = 0; i < nrOfOperations; i++) {
+		cout << "ID :" + to_string(aList[i].getId()) 
+			+ " Time:" + to_string(aList[i].getTimeEstimate()) 
+			+ " Speciality:" + aList[i].getSubSpeciality()<<endl;
+	}
+
+	nextFit(aList, nrOfOperations, MIN, room, 3);
+	displaySchedule(room, 3, MIN, nrOfOperations);
 	/*the Bin packing problem, se kap 10.1.3*/
 
+	getchar();
 	return 0;
 }
 
@@ -44,7 +64,7 @@ void firstFit(const surgery operations[], const int nrOfSurgeries, HeapType type
 
 		for (int i = 0; i < nrOfTheaters; i++) {
 			//Adds the first one in line to the room most to the "left", if it fits
-			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getSchedueldTime()) {
+			if (sortedOperations.peek().getTimeEstimate() <= theaters[i].getNonSchedueldTime()) {
 				theaters[i].addSurgery(sortedOperations.extract());
 				i = nrOfSurgeries;
 				bool added = true;
@@ -66,7 +86,7 @@ void nextFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 	int atIndex = 0;
 	while (atIndex < nrOfTheaters)
 	{
-		if (sortedOperations.peek().getTimeEstimate() <= theaters[atIndex].getSchedueldTime())
+		if (sortedOperations.peek().getTimeEstimate() <= theaters[atIndex].getNonSchedueldTime())
 		{
 			theaters[atIndex].addSurgery(sortedOperations.extract());
 		}
@@ -93,7 +113,7 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 		int indexForDelta = -1;
 		for (int i = 0; i < nrOfTheaters; i++)
 		{
-			int roomDelta = theaters[i].getSchedueldTime() - sortedOperations.peek().getTimeEstimate();
+			int roomDelta = theaters[i].getNonSchedueldTime() - sortedOperations.peek().getTimeEstimate();
 			if (roomDelta >= 0) /*Makes sure delta is positive and therefore fits*/
 			{
 				if (roomDelta == 0) /*If it fits perfectly stop the for-loop*/
@@ -120,29 +140,83 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 	} while (added);
 }
 
-surgery * readFromFile(int &nrOfoperations)
+void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries)
+{
+	/////RELEVANT INFO
+
+	int unplaned = nrOfSurgeries;
+	for (int i = 0; i < nrOfTheaters;i++) {
+		unplaned -= theaters[i].getNumberOfSurgeries();
+	}
+	cout << "************************************************************" << endl;
+	//raw info
+	cout << "SCHEDULE \n Theaters : " + to_string(nrOfTheaters)
+		+ "\n number Of surgeries : " + to_string(nrOfSurgeries)
+		+ "\n number Of unschedueld surgeries : " + to_string(unplaned) << endl;
+
+
+	for (int i = 0; i < nrOfTheaters; i++) {
+		int H = theaters[i].getTimeAvalible() / 60;
+		int M = theaters[i].getTimeAvalible() % 60;
+		cout << "\n Theater nr: " + to_string(i)
+			+ "\tTime available  H: " + to_string(H) + " M: " + to_string(M) << endl;
+
+		float procentage = float(theaters[i].getSchedueldTime()) / float(theaters[i].getTimeAvalible()) * 100;
+		cout << "Time used " + to_string(procentage) +" % "<<endl;
+		cout << "\n surgery lengths :"; //need get surgery info.
+		for (int j = 0; j <theaters[i].getNumberOfSurgeries(); j++) {
+			cout << to_string(theaters[i].getSurgery(j).getTimeEstimate()) +" ";
+		}
+	}
+
+}
+
+surgery *readFromFile(int &nrOfoperations)
 {
 	ifstream surgeryFile("Operationer_1a.txt"); /*Statiskt namn*/
 	string line;
 	string idString;
 	string speciality;
 	string timeString;
-	surgery* surgeryList = new surgery[30]; //dynamic
+	int capacity = 30;
+	surgery* surgeryList = new surgery[capacity]; //dynamic
 
 	if (surgeryFile.is_open())
 	{
+
 		int i = 0;
 		while (std::getline(surgeryFile, line))
 		{
+			//expand if needed 
+			if (nrOfoperations == capacity) {
+				capacity += 30;
+
+				surgery * temp = new surgery[capacity];
+				for (int j = 0; j < nrOfoperations; j++) {
+					temp[j] = surgeryList[j];
+					delete[]surgeryList; ///konstigt [] CHECK
+					surgeryList = temp;
+
+				}
+			}
+
 			nrOfoperations++;
+			
 			idString = line.substr(0, line.find(','));
 			speciality = line.substr(line.find(',') + 1, (line.find_last_of(',') - line.find_first_of(',') - 1));
 			timeString = line.substr(line.find_last_of(',') + 1, (line.length() - line.find_last_of(',')));
 
 			int id = std::stoi(idString, nullptr);
 			int time = std::stoi(timeString, nullptr);
-			surgeryList[i] = surgery(id, speciality, time);
+			surgery temp(id, speciality, time);
+			surgeryList[i] = temp;
+
+			/*cout << "ID :" + to_string(surgeryList[i].getId())
+				+ " Time:" + to_string(surgeryList[i].getTimeEstimate())
+				+ " Speciality:" + surgeryList[i].getSubSpeciality() << endl;*/
+			i++; //saknades :P
 		}
+		
 	}
 	return surgeryList;
 }
