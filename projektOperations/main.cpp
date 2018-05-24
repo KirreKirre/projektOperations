@@ -445,7 +445,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 		int totalMinutes = theaters[i].getTimeAvalible() % 60;
 		int unusedTimeHours = theaters[i].getNonSchedueldTime() / 60;
 		int unusedTimeMinutes = theaters[i].getNonSchedueldTime() % 60;
-		cout << "\nTheater nr: " + to_string(i)
+		cout << "\n--Theater number: " + to_string(i)
 			+ "\nTime available  H: " + to_string(totalHours) + " M: " + to_string(totalMinutes)
 			+ "\nUnused time H:" + to_string(unusedTimeHours) + " M: " + to_string(unusedTimeMinutes) << endl;
 
