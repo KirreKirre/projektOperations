@@ -456,6 +456,7 @@ void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 			added = true;
 		}
 
+
 	} while (added);
 }
 
