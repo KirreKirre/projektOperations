@@ -47,7 +47,7 @@ int main() {
 	*/
 
 	while (menuChoice != 0) {
-
+		system("cls");
 		cout << "1: Uppgift 1aMIN\n2: Uppgift 1aMAX\n3: Uppgift 1bMIN\n4: Uppgift 1bMAX\n5: Uppgift 2MIN\n6: Uppgift 2MAX\n0: Exit" << endl;
 		cin >> menuChoice;
 		cin.ignore();
@@ -500,7 +500,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 		averagePercentage += floatArr[i];
 	}
 	averagePercentage = averagePercentage / arrCounter;
-	cout << "Average percentage: " + to_string(averagePercentage) + " %" << endl;
+	cout << " \n Average usage percentage: " + to_string(averagePercentage) + " %" << endl;
 	delete[] floatArr;
 }
 
