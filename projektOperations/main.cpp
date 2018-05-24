@@ -301,8 +301,6 @@ int main() {
 			//
 			delete[] aList;
 		}
-
-
 		//for (int i = 0; i < nrOfOperations; i++) {
 		//	cout << "ID :" + to_string(aList[i].getId())
 		//		+ " Time:" + to_string(aList[i].getTimeEstimate())
