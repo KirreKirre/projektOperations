@@ -23,7 +23,7 @@ void bestFit(const surgery operations[], const int nrOfSurgeries, HeapType type,
 
 void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries);
 
-surgery* readFromFile(int &nrOfoperations, int &menuChoice);
+surgery* readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList);
 
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -32,6 +32,7 @@ int main() {
 	int nrOfOperations = 0;
 	operatingTheater room[3];
 	int menuChoice = 0;
+	surgery* surgeryList = new surgery[30];
 	/*Scenarios:
 	uppgift 1 med fil 1a MINHEAP
 	Uppgift 1 med fil 1a MAXHEAP
@@ -40,7 +41,7 @@ int main() {
 	Uppgift 2 med fil 2 MAXHEAP
 	Uppgift 2 med fil 2 MINHEAP
 	*/
-	cout << "1: Uppgift 1a\n2: Uppgift 1b\n3: Uppgift 2" << endl;
+	cout << "1: Uppgift 1a\n2: Uppgift 1b\n3: Uppgift 2 (DO AVOID DIS WAN NAO)" << endl;
 	cin >> menuChoice;
 	cin.ignore();
 	if (menuChoice == 1)
@@ -53,7 +54,7 @@ int main() {
 			nextFitRoom[i].setTimeAvalible(660);
 			bestFitRoom[i].setTimeAvalible(660);
 		}
-		aList = readFromFile(nrOfOperations, menuChoice);
+		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
 		firstFit(aList, nrOfOperations, MIN, room, 3);
 		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
 		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
@@ -72,7 +73,7 @@ int main() {
 			nextFitRoom[i].setTimeAvalible(660);
 			bestFitRoom[i].setTimeAvalible(660);
 		}
-		aList = readFromFile(nrOfOperations, menuChoice);
+		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
 		firstFit(aList, nrOfOperations, MIN, room, 3);
 		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
 		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
@@ -94,7 +95,7 @@ int main() {
 		room[2].setTimeAvalible(1000);
 		nextFitRoom[2].setTimeAvalible(1000);
 		bestFitRoom[2].setTimeAvalible(1000);
-		aList = readFromFile(nrOfOperations, menuChoice);
+		aList = readFromFile(nrOfOperations, menuChoice, surgeryList);
 		firstFit(aList, nrOfOperations, MIN, room, 3);
 		nextFit(aList, nrOfOperations, MIN, nextFitRoom, 3);
 		bestFit(aList, nrOfOperations, MIN, bestFitRoom, 3);
@@ -114,6 +115,7 @@ int main() {
 	/*the Bin packing problem, se kap 10.1.3*/
 
 	getchar();
+	delete[] surgeryList;
 	return 0;
 }
 
@@ -243,7 +245,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 
 }
 
-surgery *readFromFile(int &nrOfoperations, int &menuChoice)
+surgery *readFromFile(int &nrOfoperations, int &menuChoice, surgery* surgeryList)
 {
 	string fileName;
 	if (menuChoice == 1)
@@ -264,7 +266,6 @@ surgery *readFromFile(int &nrOfoperations, int &menuChoice)
 	string speciality;
 	string timeString;
 	int capacity = 30;
-	surgery* surgeryList = new surgery[capacity]; //dynamic /*MÅste nog ha den här utanför koden*/
 
 	if (surgeryFile.is_open())
 	{
