@@ -25,6 +25,12 @@ private:
 		{
 
 		};
+		Container&operator=(const Container & other)
+		{
+			this->package = other.package;
+			this->priority = other.priority;
+			return *this;
+		};
 
 	};
 
@@ -33,7 +39,6 @@ private:
 	int nrOfitems;
 	int capacity;
 	void expand();
-
 
 public:
 	Heap();
@@ -51,7 +56,6 @@ public:
 	int rightChild(int parentInd) { return((parentInd + 1) * 2); }
 	int parent(int childInd) { return(((childInd + 1) / 2) - 1); }
 	void swap(Container *firsobjekt, Container *other);
-
 
 	bool isEmpty()const;
 

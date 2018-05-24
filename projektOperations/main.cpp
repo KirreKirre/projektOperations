@@ -270,7 +270,6 @@ int main() {
 			nextFit(aList, nrOfOperations, MAX, nextFitRoom, 6);
 			displaySchedule(nextFitRoom, 6, MAX, nrOfOperations);
 
-
 			bestFitMinDelta(aList, nrOfOperations, MAX, bestFitMinDeltaRoom, 6);
 			displaySchedule(bestFitMinDeltaRoom, 6, MAX, nrOfOperations);
 			//
