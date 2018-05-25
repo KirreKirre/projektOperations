@@ -1,6 +1,7 @@
 #pragma once
+#include <time.h>
 //min or max
-enum HeapType { MIN, MAX };
+enum HeapType { MIN, MAX, RANDOM };
 template <typename T>
 
 class Heap
@@ -123,7 +124,8 @@ inline void Heap<T>::insert(const T & element, const int priority)
 	int par = parent(i);
 
 	//for MIN
-	if (this->heapType == MIN) {
+	if (this->heapType == MIN)
+	{
 		while (i != 0 && queue[par].priority > queue[i].priority)
 		{
 			this->swap(&queue[i], &queue[par]);
@@ -132,12 +134,23 @@ inline void Heap<T>::insert(const T & element, const int priority)
 		}
 	}
 	//for MAX
-	else {
+	else if (this->heapType == MAX)
+	{
 		while (i != 0 && queue[par].priority < queue[i].priority)
 		{
 			this->swap(&queue[i], &queue[par]);
 			i = par;
 			par = parent(i);
+		}
+	}
+	//for RANDOM
+	else if (this->heapType == RANDOM)
+	{
+		if (this->nrOfitems > 1)
+		{
+			srand(time(NULL));
+			int random = rand() % this->nrOfitems;
+			this->swap(&queue[this->nrOfitems-1], &queue[random]);
 		}
 	}
 
@@ -236,6 +249,12 @@ inline T Heap<T>::extract()
 		}
 	}
 
+	if (this->heapType == RANDOM)
+	{
+		//srand(time(NULL));
+		//int random = rand() % this->nrOfitems;
+		//this->swap(&queue[0], &queue[random]);
+	}
 
 	return temp;
 }

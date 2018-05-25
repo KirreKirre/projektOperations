@@ -304,6 +304,43 @@ int main() {
 			delete[] aList;
 			cout << " Press return to clear" << endl;
 		}
+		else if (menuChoice == 7)
+		{
+			aList = new surgery[capacity];
+			operatingTheater room[3];
+			operatingTheater nextFitRoom[3];
+			operatingTheater bestFitMinDeltaRoom[3];
+			operatingTheater bestFitMaxDeltaRoom[3];
+
+			for (int i = 0; i < 3; i++)
+			{
+				room[i].setTimeAvalible(660);
+				nextFitRoom[i].setTimeAvalible(660);
+				bestFitMinDeltaRoom[i].setTimeAvalible(660);
+				bestFitMaxDeltaRoom[i].setTimeAvalible(660);
+			}
+			readFromFile(nrOfOperations, menuChoice, aList, capacity);
+
+			firstFit(aList, nrOfOperations, RANDOM, room, 3);
+			displaySchedule(room, 3, RANDOM, nrOfOperations);
+			//
+
+			nextFit(aList, nrOfOperations, RANDOM, nextFitRoom, 3);
+			displaySchedule(nextFitRoom, 3, RANDOM, nrOfOperations);
+			//
+
+			bestFitMinDelta(aList, nrOfOperations, RANDOM, bestFitMinDeltaRoom, 3);
+			displaySchedule(bestFitMinDeltaRoom, 3, RANDOM, nrOfOperations);
+			//
+
+			bestFitMaxDelta(aList, nrOfOperations, RANDOM, bestFitMaxDeltaRoom, 3);
+			displaySchedule(bestFitMaxDeltaRoom, 3, RANDOM, nrOfOperations);
+			//
+
+			delete[] aList;
+		}
+
+
 		//for (int i = 0; i < nrOfOperations; i++) {
 		//	cout << "ID :" + to_string(aList[i].getId())
 		//		+ " Time:" + to_string(aList[i].getTimeEstimate())
@@ -541,7 +578,7 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 void readFromFile(int &nrOfoperations, int &menuChoice, surgery* &surgeryList, int capacity)
 {
 	string fileName;
-	if (menuChoice == 1 || menuChoice == 2)
+	if (menuChoice == 1 || menuChoice == 2 || menuChoice == 7)
 	{
 		fileName = "Operationer_1a.txt";
 	}
