@@ -609,10 +609,10 @@ void displaySimpleSchedule(const operatingTheater theaters[], const int nrOfThea
 			/*+ "\nTime available  H: " + to_string(totalHours) + " M: " + to_string(totalMinutes)*/
 			+ "\nUnused time H:" + to_string(unusedTimeHours) + " M: " + to_string(unusedTimeMinutes) << endl;
 
-		/*float procentage = float(theaters[i].getSchedueldTime()) / float(theaters[i].getTimeAvalible()) * 100;
+		float procentage = float(theaters[i].getSchedueldTime()) / float(theaters[i].getTimeAvalible()) * 100;
 		floatArr[arrCounter] = procentage;
 		arrCounter++;
-		cout << "Time used " + to_string(procentage) + " % " << endl;*/
+		//cout << "Time used " + to_string(procentage) + " % " << endl;
 		cout << "Surgery ID :";
 		for (int j = 0; j < theaters[i].getNumberOfSurgeries(); j++) {
 			cout << to_string(theaters[i].getSurgery(j).getId()) + " ";
