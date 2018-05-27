@@ -27,6 +27,8 @@ void bestFitMaxDelta(const surgery operations[], const int nrOfSurgeries, HeapTy
 
 void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries);
 
+void displaySimpleSchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries);
+
 void readFromFile(int &nrOfoperations, int &menuChoice, surgery* &surgeryList, int capacity);
 
 
@@ -51,7 +53,7 @@ int main() {
 	while (menuChoice != 0) {
 		
 		system("cls");
-		cout << "1: Uppgift 1aMIN\n2: Uppgift 1aMAX\n3: Uppgift 1bMIN\n4: Uppgift 1bMAX\n5: Uppgift 2MIN\n6: Uppgift 2MAX\n0: Exit" << endl;
+		cout << "1: Uppgift 1aMIN\n2: Uppgift 1aMAX\n3: Uppgift 1bMIN\n4: Uppgift 1bMAX\n5: Uppgift 2MIN\n6: Uppgift 2MAX\n7: RANDOM\n0: Exit" << endl;
 		cin >> menuChoice;
 		cin.ignore();
 		if (menuChoice == 1)
@@ -301,6 +303,13 @@ int main() {
 			bestFitMaxDelta(aList, nrOfOperations, MAX, bestFitMaxDeltaRoom, 6);
 			displaySchedule(bestFitMaxDeltaRoom, 6, MAX, nrOfOperations);
 			//
+			system("cls");
+
+			displaySimpleSchedule(room, 6, MAX, nrOfOperations);
+			displaySimpleSchedule(nextFitRoom, 6, MAX, nrOfOperations);
+			displaySimpleSchedule(bestFitMinDeltaRoom, 6, MAX, nrOfOperations);
+			displaySimpleSchedule(bestFitMaxDeltaRoom, 6, MAX, nrOfOperations);
+
 			delete[] aList;
 			cout << " Press return to clear" << endl;
 		}
@@ -563,6 +572,53 @@ void displaySchedule(const operatingTheater theaters[], const int nrOfTheaters, 
 			cout << to_string(theaters[i].getSurgery(j).getTimeEstimate()) + " ";
 		}
 		cout << endl;
+	}
+	float averagePercentage = 0;
+	for (int i = 0; i < arrCounter; i++)
+	{
+		averagePercentage += floatArr[i];
+	}
+	averagePercentage = averagePercentage / arrCounter;
+	cout << " \n Average usage percentage: " + to_string(averagePercentage) + " %" << endl;
+	delete[] floatArr;
+	getchar();
+}
+
+void displaySimpleSchedule(const operatingTheater theaters[], const int nrOfTheaters, HeapType type, const int nrOfSurgeries)
+{
+	/////RELEVANT INFO
+
+	int unplaned = nrOfSurgeries;
+	for (int i = 0; i < nrOfTheaters; i++) {
+		unplaned -= theaters[i].getNumberOfSurgeries();
+	}
+	cout << "************************************************************" << endl;
+	//raw info
+	cout << "SCHEDULE \n Theaters : " + to_string(nrOfTheaters)
+		+ "\n number Of surgeries : " + to_string(nrOfSurgeries)
+		+ "\n number Of unschedueld surgeries : " + to_string(unplaned) << endl;
+
+	float* floatArr = new float[nrOfTheaters];
+	int arrCounter = 0;
+	for (int i = 0; i < nrOfTheaters; i++) {
+		int totalHours = theaters[i].getTimeAvalible() / 60;
+		int totalMinutes = theaters[i].getTimeAvalible() % 60;
+		int unusedTimeHours = theaters[i].getNonSchedueldTime() / 60;
+		int unusedTimeMinutes = theaters[i].getNonSchedueldTime() % 60;
+		cout << "\n--Theater number: " + to_string(i)
+			/*+ "\nTime available  H: " + to_string(totalHours) + " M: " + to_string(totalMinutes)*/
+			+ "\nUnused time H:" + to_string(unusedTimeHours) + " M: " + to_string(unusedTimeMinutes) << endl;
+
+		/*float procentage = float(theaters[i].getSchedueldTime()) / float(theaters[i].getTimeAvalible()) * 100;
+		floatArr[arrCounter] = procentage;
+		arrCounter++;
+		cout << "Time used " + to_string(procentage) + " % " << endl;*/
+		cout << "Surgery ID :";
+		for (int j = 0; j < theaters[i].getNumberOfSurgeries(); j++) {
+			cout << to_string(theaters[i].getSurgery(j).getId()) + " ";
+		}
+		cout << "" << endl;
+		
 	}
 	float averagePercentage = 0;
 	for (int i = 0; i < arrCounter; i++)
